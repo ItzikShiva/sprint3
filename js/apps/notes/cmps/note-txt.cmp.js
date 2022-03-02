@@ -1,11 +1,9 @@
-
-
 export default {
     props: ['note'],
     template: `
 
     <section>
-        <p>{{note.type}}</p>
+        <p>{{note}}</p>
 
 
     </section>
@@ -15,7 +13,7 @@ export default {
 
     data() {
         return {
-            note: null
+            // note: null
         }
     }
 }

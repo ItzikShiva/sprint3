@@ -1,23 +1,10 @@
-
 import { noteService } from "../services/note-service.js";
 import noteList from "../cmps/note-list.cmp.js";
 
-/* <filter></filter>
-<note-list>
-    <note-preview>
-        <note-txt\img\video>
-    </note-preview>
-</note-list> */
-
 export default {
     template: `
-        <section class="">
+        <section class="note-app app-main">
             <note-list :notes="notesForDisplay"></note-list>
-            
-        <!-- <filter></filter>
-        <add button>
-        <note-list>
-        </note-list>  -->
         </section>
     `,
     components: {
