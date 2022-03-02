@@ -5,10 +5,15 @@ import noteTodos from "./note-todos.cmp.js";
 export default {
     props: ['note'],
     template: `
-        <section class="note-preview" v-if="note">
-          
-
-
+        <section :style="{'background-color': noteBackground}" class="note-preview" v-if="note">
+         <p>{{titleToRender}}</p>
+        <img :style="{width:'50px'}" v-if="isTypeImg" :src="noteImgUrl" alt="">
+        <div class="todo-list">
+            <p>{{note.info.label}}</p>
+            <ul>
+                <li v-for="note in noteTodos" :key="note.id">{{note.txt}}</li>
+            </ul>
+        </div>
         </section>
     `,
     components: {
@@ -33,8 +38,23 @@ export default {
     },
     methods: {},
     computed: {
+        isTypeImg() {
+            return this.note.type === 'note-img'
+        },
+        noteImgUrl() {
+            return this.note.info.url
+        },
+        noteBackground() {
+            return this.note.style.backgroundColor
+        },
+        titleToRender() {
+            if (this.note.info.txt) return this.note.info.txt
+            if (this.note.info.title) return this.note.info.title
+        },
+        noteTodos() {
+            return this.note.info.todos
+        }
 
-        
     }
 }
 

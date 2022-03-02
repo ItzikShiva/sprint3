@@ -1,5 +1,5 @@
 .note-app.app-main {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     width: 100%;
     margin-top: 20px;
@@ -9,5 +9,15 @@
 .input-notes {
     align-self: center;
     width: 50%;
+}
+
+.note-list {
+    background-color: white;
+}
+
+.card {
+    padding: 5px;
+    width: 200px;
+    margin-top: 10px;
 }
 

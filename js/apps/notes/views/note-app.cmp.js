@@ -8,7 +8,7 @@ import noteTodosCmp from "../cmps/note-todos.cmp.js";
 export default {
     template: `
         <section class="note-app app-main">
-            <note-create @create-note="createNote"/>
+            <note-create @create-note="createNote" class="card"/>
             <note-list :notes="notesForDisplay"></note-list>
         <component v-if="note" :is="currType" :note="note"/>
         </section>
@@ -19,8 +19,6 @@ export default {
         'note-txt': noteTxt,
         'note-img': noteImg,
         'note-todos': noteTodosCmp
-
-
     },
     data() {
         return {
@@ -30,14 +28,18 @@ export default {
         };
     },
     created() {
-        this.notes = noteService.createNotes()
-        console.log(this.notes);
+        noteService.query()
+            .then(notes => {
+                this.notes = notes
+                console.log('notes:', this.notes);
+            })
     },
     methods: {
         createNote(note) {
             console.log(note);
             this.note = note
             this.currType = note.type
+            this.notes.push(note)
             // switch (note.type) {
             //     case 'note-txt': this.placeholderContent = 'wwrite a text'; break
             //     case 'note-img': this.placeholderContent = 'insert an image link'; break
@@ -52,7 +54,5 @@ export default {
         notesForDisplay() {
             return this.notes
         },
-
-
     },
 };

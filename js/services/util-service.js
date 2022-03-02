@@ -2,7 +2,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     makeId,
-    shortingSentences
+    shortingSentences,
+    getRandomColor
 }
 
 function shortingSentences(sentence, wordsCount) {
@@ -21,7 +22,7 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined;
 }
 
-function makeId(length = 8) {
+function makeId(length = 4) {
     var txt = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (var i = 0; i < length; i++) {
@@ -29,3 +30,12 @@ function makeId(length = 8) {
     }
     return txt;
 }
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }

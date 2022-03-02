@@ -1,3 +1,5 @@
+import { utilService } from "../../../services/util-service.js";
+
 export default {
     template: `
         <section class="note-app app-main">
@@ -17,10 +19,15 @@ export default {
     data() {
         return {
             note: {
+                id: utilService.makeId(length = 4),
                 type: 'note-txt',
+                style: {
+                    backgroundColor: utilService.getRandomColor()
+                },
                 info: {
                     txt: ""
                 },
+                isPinned: true,
             },
             placeholderContent: 'write note txt'
         }
@@ -40,7 +47,7 @@ export default {
         },
         createNote() {
             if (!this.note.info.txt) return
-            this.$emit('create-note', { ...this.note })
+            this.$emit('create-note', {...this.note})
         }
 
     },
