@@ -1,46 +1,37 @@
 import { utilService } from "../../../services/util-service.js";
 import { mailService } from "../services/mail-service.js";
-import mailView from "./mail-view.cmp.js";
 
 export default {
     props: ['mail'],
     template: `
-        <section class="mail-preview" @click="isMailView = !isMailView">
-                <strong>{{mail.from}}</strong> 
-                <strong>{{shortSubject}}</strong>
+        <section class="mail-view">
+
+        {{mail}}
+                <!-- <strong>{{mail.from}}</strong> 
+                <strong>{{mail.subject}}</strong>
                 <span>
-                    {{shortBody}}
+                    {{mail.body}}
                 </span>
                 <span>
                     {{sentTime}}
-                </span>
-   
+                </span> -->
+            
+            
         </section>
     `,
     data() {
         return {
-            isMailView: false,
+            mailToView: null
         }
     },
-    components: {
-        mailView
-    },
     created() {
-
+        // getmail by id
     },
     methods: {
 
     },
     computed: {
-        shortSubject() {
-            return utilService.shortingSentences(this.mail.subject, 2)
-        },
-        shortBody() {
-            return utilService.shortingSentences(this.mail.body, 4)
-        },
-        sentTime() {
-            return mailService.getTimeStringFromDate(this.mail.sentAt)
-        }
+
     }
 }
 

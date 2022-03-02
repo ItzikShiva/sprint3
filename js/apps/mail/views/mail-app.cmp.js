@@ -2,7 +2,7 @@ import { mailService } from '../services/mail-service.js';
 // import { bookService } from '../services/book-service.js'
 //import eventbus???
 // import bookFilter from '../cmps/book-filter.cmp.js';
-import mailList from '../cmps/mail-list.cmp.js'
+import mailList from '../cmps/mails-list.cmp.js'
 // import bookAdd from './book-add.cmp.js';
 
 

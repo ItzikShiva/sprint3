@@ -31,7 +31,9 @@ function getMailsHardCoded() {
             body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, ducimus?',
             isRead: false,
             sentAt: 155164560594,
-            to: 'momo@momo.com'
+            to: 'momo@momo.com',
+            isView: false,
+
         },
         {
             id: 'e1013',
@@ -40,7 +42,8 @@ function getMailsHardCoded() {
             body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, cum!',
             isRead: false,
             sentAt: 15511339645694,
-            to: 'momo@momo.com'
+            to: 'momo@momo.com',
+            isView: false,
         },
         {
             id: 'e104',
@@ -49,7 +52,8 @@ function getMailsHardCoded() {
             body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nisi consequatur facilis ipsam.',
             isRead: false,
             sentAt: 1551133930594,
-            to: 'momo@momo.com'
+            to: 'momo@momo.com',
+            isView: false,
         },
     ]
 }

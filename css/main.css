@@ -115,3 +115,66 @@ body {
     justify-content: center;
     width: 150px;
 }
+
+
+/* =========================   MAIL    ======================= */
+
+.mail-app {
+    height: 90vh;
+    background-color: #EDE7D9;
+}
+
+.mails-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.mails-list li {
+    /* list-style: none;
+    margin: 0;
+    padding: 10px; */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    /* flex-wrap: wrap; */
+}
+
+.mail-preview {
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+    /* height: 150px; */
+    background-color: #A49694;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.mail-view {
+    /* padding: 10px;
+    margin: 10px; */
+    width: 90%;
+    /* height: 150px; */
+    background-color: #A49694;
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: space-between;*/
+    border-radius: 10px;
+}
+
+
+/* .mail-preview {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 150px;
+} */
