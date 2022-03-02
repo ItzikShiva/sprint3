@@ -6,30 +6,29 @@ export default {
         <section class="note-preview">
             <note-txt :note="note" v-if="isTextType"></note-txt>
             <!-- <img v-if=imgType">  -->
-            <div>{{note.type}}</div>
-            <div>{{note.type}}</div>
+            <div>{{note.info.txt}}</div>
+            <img :src="bookImgUrl" alt="">
+            <li>{{note.todos.txt}}</li>
         </section>
     `,
-
     components: {
         noteTxt
-
+        
     },
     data() {
         return {
-            currType: this.note.type,
-            isTextType: false,
-            // isImgType: false
+
         }
     },
     created() {
-        if (currType === 'text') isTextType = true;
-
+        
     },
     methods: {},
     computed: {
-        currType() {
-            return this.note.type
-        }
+        bookImgUrl() {
+            return this.note.info.url
+        
+        
     }
+}
 }

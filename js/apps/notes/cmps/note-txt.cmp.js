@@ -5,7 +5,7 @@ export default {
     template: `
 
     <section>
-        <p></p>
+        <p>{{note.type}}</p>
 
 
     </section>
@@ -15,7 +15,7 @@ export default {
 
     data() {
         return {
-            note
+            note: null
         }
     }
 }
