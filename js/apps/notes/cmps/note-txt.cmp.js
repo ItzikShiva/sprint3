@@ -3,7 +3,8 @@ export default {
     template: `
 
     <section>
-        <p>{{note}}</p>
+        <h2>txt note!!!</h2>
+        <p>{{note.info.txt}}</p>
 
 
     </section>

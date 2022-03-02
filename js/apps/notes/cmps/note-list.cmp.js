@@ -4,12 +4,11 @@ export default {
     props: ['notes'],
     template: `
 
-    <section class="note-list">
-    <input type="text"> <button>note text</button><button>note img</button><button>not todos</button>
+    <section class="note-list" v-if="notes">
         <ul>
-            <li v-for="note in notes" :key="note.id" >
+            <div v-for="note in notes" :key="note.id" class="note" >
                 <note-preview :note="note"></note-preview>
-            </li>
+            </div>
         </ul>
     </section>
     

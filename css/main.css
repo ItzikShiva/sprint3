@@ -6,9 +6,15 @@ EDE7D9 89%
 A49694 61%
 736B60 41% */
 
+/* NOTES STYLE */
+@import '/css/note-style/main-notes.css';
+@import '/css/note-style/notes-css.css';
+
 * {
     box-sizing: border-box;
 }
+
+
 
 h1,
 h2,
@@ -27,10 +33,17 @@ body {
 
 /* app-header , app-footer */
 
-.app-footer,
+.app-footer {
+    position: fixed;
+    bottom: 0;
+    height: auto;
+}
 .app-header {
     background-color: #bbab85;
-    height: 5vh;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 

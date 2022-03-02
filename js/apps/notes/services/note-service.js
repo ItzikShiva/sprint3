@@ -1,5 +1,4 @@
 
-createNotes()
 
 export const noteService = {
     createNotes
@@ -23,7 +22,7 @@ function createNotes() {
             id: "n102",
             type: "note-img",
             info: {
-                url: "http://some-img/me",
+                url: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=-1&s=1",
                 title: "Bobi and Me"
             },
             style: {
