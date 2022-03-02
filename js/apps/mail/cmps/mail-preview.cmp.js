@@ -1,4 +1,5 @@
 import { utilService } from "../../../services/util-service.js";
+import { mailService } from "../services/mail-service.js";
 
 export default {
     props: ['mail'],
@@ -10,7 +11,9 @@ export default {
                 <span>
                     {{shortBody}}
                 </span>
-
+                <span>
+                    {{sentTime}}
+                </span>
             </p>
 
         </section>
@@ -28,6 +31,19 @@ export default {
         },
         shortBody() {
             return utilService.shortingSentences(this.mail.body, 4)
+        },
+        sentTime() {
+            return mailService.getTimeStringFromDate(this.mail.sentAt)
         }
     }
 }
+
+// {
+//     id: 'e104',
+//     from: 'dor',
+//     subject: 'dsadsu! dsadsu! dsadsu!dsadsu!',
+//     body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nisi consequatur facilis ipsam.',
+//     isRead: false,
+//     sentAt: 1551133930594,
+//     to: 'momo@momo.com'
+// },

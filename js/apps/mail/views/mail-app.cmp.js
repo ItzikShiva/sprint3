@@ -1,3 +1,4 @@
+import { mailService } from '../services/mail-service.js';
 // import { bookService } from '../services/book-service.js'
 //import eventbus???
 // import bookFilter from '../cmps/book-filter.cmp.js';
@@ -27,7 +28,7 @@ export default {
                     subject: 'Miss you! Miss you! Miss you!',
                     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, ducimus?',
                     isRead: false,
-                    sentAt: 1551133930594,
+                    sentAt: 155164560594,
                     to: 'momo@momo.com'
                 },
                 {
@@ -36,7 +37,7 @@ export default {
                     subject: 'shiva! shiva! shiva! shiva! shiva!',
                     body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, cum!',
                     isRead: false,
-                    sentAt: 1551133930594,
+                    sentAt: 15511339645694,
                     to: 'momo@momo.com'
                 },
                 {
