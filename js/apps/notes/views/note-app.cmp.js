@@ -1,9 +1,6 @@
-// import { bookService } from '../services/book-service.js'
-//import eventbus???
-// import bookFilter from '../cmps/book-filter.cmp.js';
-// import bookList from '../cmps/book-list.cmp.js';
-// import bookAdd from './book-add.cmp.js';
 
+import { noteService } from "../services/note-service.js";
+import noteList from "../cmps/note-list.cmp.js";
 
 /* <filter></filter>
 <note-list>
@@ -15,6 +12,8 @@
 export default {
     template: `
         <section class="">
+            <note-list :notes="notesForDisplay"></note-list>
+            
         <!-- <filter></filter>
         <add button>
         <note-list>
@@ -22,22 +21,27 @@ export default {
         </section>
     `,
     components: {
-        // bookFilter,
-        // bookList,
-        // bookAdd
+        noteList
+
     },
     data() {
         return {
+            notes: null
 
         };
     },
     created() {
-
+        this.notes = noteService.createNotes()
+        console.log(this.notes);
     },
     methods: {
 
+
     },
     computed: {
+        notesForDisplay() {
+            return this.notes
+        }
 
     },
 };
