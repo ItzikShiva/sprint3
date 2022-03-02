@@ -2,33 +2,46 @@ import { utilService } from "../../../services/util-service.js";
 import { mailService } from "../services/mail-service.js";
 
 export default {
-    props: ['mail'],
+    props: ['mails', 'mail', 'index'],
     template: `
-        <section class="mail-view">
+        <section class="mail-view" v-if="!isMailIsDeleted">
 
-        {{mail}}
-                <!-- <strong>{{mail.from}}</strong> 
+                <strong>{{mail.from}}</strong> 
                 <strong>{{mail.subject}}</strong>
                 <span>
                     {{mail.body}}
                 </span>
                 <span>
                     {{sentTime}}
-                </span> -->
+                </span>
+                <div class="mail-view-actions">
+                    <button @click="onDeleteMail">X</button>
+                    <!-- Show a read/unread state per email -->
+                </div>
             
             
         </section>
     `,
     data() {
         return {
-            mailToView: null
+            isMailIsDeleted: false,
+            sentTime: mailService.getTimeStringFromDate(this.mail.sentAt)
         }
     },
     created() {
         // getmail by id
     },
     methods: {
+        onDeleteMail() {
+            mailService.remove(this.mail.id)
+                .then(mail => {
+                    this.isMailIsDeleted = true
+                    this.$emit('mailDeleted', this.isMailIsDeleted);
+                })
 
+            // REMOVE from model!
+
+        }
     },
     computed: {
 

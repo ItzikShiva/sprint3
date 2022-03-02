@@ -6,15 +6,14 @@ EDE7D9 89%
 A49694 61%
 736B60 41% */
 
+
 /* NOTES STYLE */
+
 @import '/css/note-style/main-notes.css';
 @import '/css/note-style/notes-css.css';
-
 * {
     box-sizing: border-box;
 }
-
-
 
 h1,
 h2,
@@ -38,6 +37,7 @@ body {
     bottom: 0;
     height: auto;
 }
+
 .app-header {
     background-color: #bbab85;
     height: 100%;
@@ -150,6 +150,7 @@ body {
     /* list-style: none;
     margin: 0;
     padding: 10px; */
+    border: 0.5px solid;
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -158,8 +159,8 @@ body {
 
 .mail-preview {
     padding: 10px;
-    margin: 10px;
-    width: 90%;
+    /* margin: 10px; */
+    /* width: 90%; */
     /* height: 150px; */
     background-color: #A49694;
     display: flex;
@@ -171,7 +172,7 @@ body {
 .mail-view {
     /* padding: 10px;
     margin: 10px; */
-    width: 90%;
+    /* width: 90%; */
     /* height: 150px; */
     background-color: #A49694;
     display: flex;

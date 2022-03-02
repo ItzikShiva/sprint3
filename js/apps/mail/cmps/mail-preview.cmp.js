@@ -5,7 +5,7 @@ import mailView from "./mail-view.cmp.js";
 export default {
     props: ['mail'],
     template: `
-        <section class="mail-preview" @click="isMailView = !isMailView">
+        <section class="mail-preview" v-if="mail" @click="isMailView = !isMailView">
                 <strong>{{mail.from}}</strong> 
                 <strong>{{shortSubject}}</strong>
                 <span>
@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             isMailView: false,
+            sentTime: mailService.getTimeStringFromDate(this.mail.sentAt)
         }
     },
     components: {
@@ -38,9 +39,7 @@ export default {
         shortBody() {
             return utilService.shortingSentences(this.mail.body, 4)
         },
-        sentTime() {
-            return mailService.getTimeStringFromDate(this.mail.sentAt)
-        }
+
     }
 }
 

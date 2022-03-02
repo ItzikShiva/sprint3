@@ -9,7 +9,8 @@ export const mailService = {
     getTimeStringFromDate,
     query,
     getMailsHardCoded,
-    saveMailsToStorage
+    saveMailsToStorage,
+    remove
 };
 
 function getTimeStringFromDate(date) {
@@ -62,14 +63,14 @@ function saveMailsToStorage(mails) {
     utilService.saveToStorage(STORAGE_KEY, mails)
 }
 
+function remove(mailId) {
+    //remove from model
+
+    return storageService.remove(STORAGE_KEY, mailId);
+}
 
 
 
-
-
-// function remove(carId) {
-//     return storageService.remove(STORAGE_KEY, carId);
-// }
 
 // function get(carId) {
 //     return storageService.get(STORAGE_KEY, carId)
