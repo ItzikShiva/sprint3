@@ -1,20 +1,18 @@
-import { utilService } from "../../../services/util-service.js";
 import { mailService } from "../services/mail-service.js";
-// import mailView from "./mail-view.cmp.js";
 
 export default {
     props: ['mail'],
     template: `
         <section class="mail-preview"  v-if="!isMailDeleted" @click="mail.isView = !mail.isView">
                    <!-- ++++++++++++ MAIL-PREVIEW ++++++++++++ -->
-                    <div class="mail-preview-inside" @click="mail.isRead=true,onMailChange">
+                    <div class="mail-preview-inside" @click="mail.isRead=true">
                         <strong>{{mail.from}}</strong> 
                          <strong>{{shortSubject}}</strong>
                          <span>
                              {{shortBody}}
                          </span>
-                         <img  v-if="mail.isRead" src="js/apps/mail/imgs/read.png" alt="read mail">
-                         <img v-else src="js/apps/mail/imgs/unread.png" alt="unread mail">
+                         <img v-if="mail.isRead" src="js/apps/mail/imgs/read.png" alt="read mail" >
+                         <img v-if="!mail.isRead" src="js/apps/mail/imgs/unread.png" alt="unread mail" >
                          <span>
                              {{sentTime}}
                          </span>
@@ -30,9 +28,9 @@ export default {
                         {{sentTime}}
                     </span>
                     <div class="mail-view-actions">
-                        <img v-if="mail.isRead"  @click="mail.isRead=!mail.isRead,onMailChange" src="js/apps/mail/imgs/read.png" alt="make unread mail">
-                        <img v-else @click="mail.isRead=!mail.isRead" src="js/apps/mail/imgs/unread.png" alt="make read mail">
-                        <button @click="onDeleteMail">X</button>
+                        <img v-if="mail.isRead"  @click="mail.isRead=!mail.isRead" src="js/apps/mail/imgs/read.png" alt="make unread mail" >
+                        <img v-if="!mail.isRead" @click="mail.isRead=!mail.isRead" src="js/apps/mail/imgs/unread.png" alt="make read mail">
+                        <button v-if @click="onDeleteMail">X</button>
                         
                     </div>
                 </div>
@@ -62,9 +60,6 @@ export default {
                     this.$emit('mailDeleted', this.mails);
                 })
             this.isMailIsDeleted = true
-        },
-        onMailChange() {
-            console.log('check', this.mail);
         }
     },
     computed: {

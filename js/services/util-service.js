@@ -8,6 +8,7 @@ export const utilService = {
 
 function shortingSentences(sentence, wordsCount) {
     sentence = sentence.split(' ')
+        // if (wordsCount > sentence.length) wordsCount = sentence.length
     sentence = sentence.slice(0, wordsCount)
     sentence = sentence.join(' ')
     return sentence
@@ -38,4 +39,4 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
+}

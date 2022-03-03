@@ -28,6 +28,7 @@ export default {
     created() {
         mailService.query()
             .then(mails => {
+
                 if (mails.length) this.mails = mails
                 else {
                     this.mails = mailService.getMailsHardCoded()

@@ -1,23 +1,29 @@
+// THIS CMP ISNT IN USE!!!
+
 import { utilService } from "../../../services/util-service.js";
 import { mailService } from "../services/mail-service.js";
+// import mailPreview from "./mail-preview.cmp.js"
 
 export default {
     props: ['mails', 'mail', 'index'],
     template: `
         <section class="mail-view" v-if="!isMailIsDeleted">
+<div class="mail-view">
 
-                <strong>{{mail.from}}</strong> 
-                <strong>{{mail.subject}}</strong>
-                <span>
-                    {{mail.body}}
-                </span>
-                <span>
-                    {{sentTime}}
-                </span>
-                <div class="mail-view-actions">
-                    <button @click="onDeleteMail">X</button>
-                    <!-- Show a read/unread state per email -->
-                </div>
+
+    <strong>{{mail.from}}</strong> 
+    <strong>{{mail.subject}}</strong>
+    <span>
+        {{mail.body}}
+    </span>
+    <span>
+        {{sentTime}}
+    </span>
+    <div class="mail-view-actions">
+        <button @click="onDeleteMail">X</button>
+        <!-- Show a read/unread state per email -->
+    </div>
+</div>
             
             
         </section>
@@ -28,20 +34,23 @@ export default {
             sentTime: mailService.getTimeStringFromDate(this.mail.sentAt)
         }
     },
+    components: {
+        // mailPreview,
+    },
     created() {
         // getmail by id
     },
     methods: {
-        onDeleteMail() {
-            mailService.remove(this.mail.id)
-                .then(mail => {
-                    this.isMailIsDeleted = true
-                    this.$emit('mailDeleted', this.isMailIsDeleted);
-                })
-
-            // REMOVE from model!
-
-        }
+        // onDeleteMail() {
+        //     mailService.remove(this.mail.id)
+        //         .then(mail => {
+        //             this.isMailIsDeleted = true
+        //                 // console.log('this.index', this.index);
+        //             console.log(this.mail.id);
+        //             this.$emit('mailDeleted', this.mails);
+        //         })
+        //     // REMOVE from model/dom!
+        // }
     },
     computed: {
 
