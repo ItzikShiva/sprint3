@@ -1,7 +1,7 @@
 import mailPreview from "./mail-preview.cmp.js"
 import mailsStatus from "./mail-status.cmp.js"
 import mailFilter from "./mail-filter.cmp.js"
-// import mailView from "./mail-view.cmp.js";
+import mailSort from "./mail-sort.cmp.js"
 
 
 export default {
@@ -14,6 +14,10 @@ export default {
             </div> -->
             
             <ul>
+                <li>
+                    <mail-sort @sorted="onSorted"> </mail-sort>
+
+                </li>
                 <li v-for="(mail,index) in mailstoDisplay" :key="mail.id" >
                    <mail-preview :mail="mail" @mailDeleted="mailWasDelete"/>
                 </li>
@@ -22,16 +26,15 @@ export default {
     `,
     data() {
         return {
-            // isMailDeleted: false,
             isMailView: false,
-            // mailsToViewIds: [],
             currMailToView: null,
         }
     },
     components: {
         mailPreview,
         mailsStatus,
-        mailFilter
+        mailFilter,
+        mailSort
 
     },
     methods: {
@@ -41,21 +44,10 @@ export default {
             //this for the mails-status cmp
             this.isMailDeleted = true
         },
-        // isInMailsToViewIds(mailId) {
-        //     return this.mailsToViewIds.some(id => id === mailId)
-        // },
-
-        // idsToView(mailId) {
-        //     this.mailsToViewIds.push(mailId)
-        //     console.log(this.mailsToViewIds)
-        //         // this.mailToViewId = mailId
-        // }
-        // remove(id) {
-        //     this.$emit('remove', id);
-        // },
-        // select(car) {
-        //     this.$emit('selected', car);
-        // }
+        onSorted(sortBy) {
+            // console.log(sortBy);
+            this.$emit('sorted', sortBy);
+        },
     },
     computed: {
 

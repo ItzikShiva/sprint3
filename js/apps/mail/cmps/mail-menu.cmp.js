@@ -1,11 +1,11 @@
 import { mailService } from "../services/mail-service.js";
 
 export default {
-    props: [''],
+    props: ['allMails'],
     template: `
         <section class="mail-menu" >
-        <button>inbox</button>
-        <button>starred</button>
+        <button @click="menuClick" value="inbox">Inbox</button>
+        <button @click="menuClick" value="starred">Starred</button>
         </section>
     `,
     components: {
@@ -14,7 +14,7 @@ export default {
     mounted() {},
     data() {
         return {
-
+            currMenuButton: null,
         }
     },
     components: {
@@ -22,7 +22,12 @@ export default {
     },
     created() {},
     methods: {
-
+        menuClick(ev) {
+            // console.log(ev.target.value);
+            // console.log(this.currMenuButton);
+            this.currMenuButton = ev.target.value
+            this.$emit('menuWasClicked', this.currMenuButton);
+        }
     },
     computed: {
 

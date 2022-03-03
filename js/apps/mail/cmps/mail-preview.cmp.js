@@ -6,7 +6,7 @@ import { showErrorMsg, showSuccessMsg, eventBus } from "../../../services/eventB
 export default {
     props: ['mail'],
     template: `
-        <section class="mail-preview"  v-if="!isMailDeleted" @click="mail.isView = !mail.isView">
+        <section class="mail-preview"  v-if="!isMailDeleted" @click.prevent="mail.isView = !mail.isView">
                    <!-- ++++++++++++ MAIL-PREVIEW ++++++++++++ -->
                     <div class="mail-preview-inside" @click="mail.isRead=true,onMailChange()">
                         <strong>{{mail.from}}</strong> 
@@ -31,8 +31,12 @@ export default {
                         {{sentTime}}
                     </span>
                     <div class="mail-view-actions">
+                        <!-- ========READ \ UNREAD TOGGLE====== -->
                         <img v-if="mail.isRead"  @click="mail.isRead=!mail.isRead,onMailChange();"   src="js/apps/mail/imgs/read.png" alt="make unread mail">
-                        <img v-else @click="mail.isRead=!mail.isRead" src="js/apps/mail/imgs/unread.png" alt="make read mail">
+                        <img v-else @click="mail.isRead=!mail.isRead,onMailChange()" src="js/apps/mail/imgs/unread.png" alt="make read mail">
+                        <!-- ========STAR \ UNSTAR TOGGLE====== -->
+                        <img v-if="mail.isStar"  @click.stop="mail.isStar=!mail.isStar,onMailChange();"   src="js/apps/mail/imgs/star.png" alt="unmark mail">
+                        <img v-else @click.stop="mail.isStar=!mail.isStar,onMailChange()" src="js/apps/mail/imgs/unstar.png" alt="make read mail">
                         <button @click="onDeleteMail">X</button>
                         
                     </div>
@@ -58,37 +62,8 @@ export default {
             console.log('deleted id:', this.mail.id);
             this.$emit('mailDeleted', this.mail.id);
 
-            mailService.remove(this.mail.id)
-                .then(mail => {
-                    // this.isMailIsDeleted = true
-
-                    // this.$emit('mailDeleted', this.mails);
-
-                    // window.events.$emit('mailDeleted', this.mails);
-
-
-                    // eventBus.emit('show-msg', { txt: 'Review Added', type: 'success' })
-                    showSuccessMsg('Deleted succesfully');
-                })
             this.isMailIsDeleted = true
         },
-        // before adinas tip:
-        // onDeleteMail() {
-        //     mailService.remove(this.mail.id)
-        //         .then(mail => {
-        //             this.isMailIsDeleted = true
-        //             console.log('deleted id:', this.mail.id);
-
-        //             this.$emit('mailDeleted', this.mails);
-
-        //             // window.events.$emit('mailDeleted', this.mails);
-
-
-        //             // eventBus.emit('show-msg', { txt: 'Review Added', type: 'success' })
-        //             showSuccessMsg('Deleted succesfully');
-        //         })
-        //     this.isMailIsDeleted = true
-        // },
         onMailChange() {
             mailService.updateMail(this.mail)
         }

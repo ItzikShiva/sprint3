@@ -13,8 +13,8 @@ export default {
             <mail-filter @filtered="setFilter" @radioFilter="setFilter"></mail-filter>
             <mail-status :allMails="allMails"></mail-status>
             <div class="mail-menu-list">
-                <mail-menu></mail-menu>
-                <mail-list  :mailstoDisplay="mailsForDisplay" :allMails="allMails" @mailDeleted="onDeleteMail"/>
+                <mail-menu :allMails="allMails" @menuWasClicked="setMenu"></mail-menu>
+                <mail-list :mailstoDisplay="mailsForDisplay" :allMails="allMails" @mailDeleted="onDeleteMail" @sorted="setSort"/>
             </div>
            <!-- <router-link to="/car/edit">Add a new car</router-link> -->
         </section>
@@ -29,9 +29,14 @@ export default {
     data() {
         return {
             allMails: null,
-            mailstoDisplay: null,
+            // mailstoDisplay: null,
             filterByWords: null,
-            filterByRadio: null
+            filterByRadio: null,
+            currMenuButton: null,
+            sortBy: {
+                name: false,
+                date: true
+            }
         };
     },
     created() {
@@ -44,10 +49,19 @@ export default {
                     this.getUpdateAllMails()
                 })
         },
+        setMenu(currMenuButton) {
+            console.log('yes', currMenuButton);
+            this.currMenuButton = currMenuButton
 
+            // this.mailsForDisplay()
+        },
+        setSort(sortBy) {
+            // console.log(sortBy);
+            this.sortBy = sortBy
+        },
         setFilter(filterBy) {
             this.filterByWords = filterBy.words;
-            this.filterByRadio = filterBy.radio
+            this.filterByRadio = filterBy.radio;
         },
         getUpdateAllMails() {
             mailService.query()
@@ -58,36 +72,46 @@ export default {
                         mailService.saveMailsToStorage(this.allMails)
                     }
                 });
-        }
+        },
+
     },
     computed: {
         mailsForDisplay() {
-            // return this.allMails
+            console.log('checking mailsForDisplay()');
 
             var mailsForDisplay = this.allMails;
 
             if (this.filterByWords) {
                 const regex = new RegExp(this.filterByWords, 'i');
-                // mailsForDisplay = this.allMails.filter(mail => regex.test(mail.subject));
                 mailsForDisplay = this.allMails.filter(mail => (
                     regex.test(mail.body) || regex.test(mail.subject)
                 ));
             }
+
             if (this.filterByRadio === 'Read') {
                 mailsForDisplay = mailsForDisplay.filter(mail => (mail.isRead));
             } else if (this.filterByRadio === 'unRead') {
                 mailsForDisplay = mailsForDisplay.filter(mail => (!mail.isRead));
             }
 
+            if (this.currMenuButton === 'starred') {
+                mailsForDisplay = mailsForDisplay.filter(mail => (mail.isStar));
+            }
 
-            // if (this.priceRange < 200) {
-            //     mailsForDisplay = mailsForDisplay.filter(mail => (mail.listPrice.amount < this.priceRange));
-            // }
+            if (mailsForDisplay) {
+                if (!this.sortBy.name) {
+                    //something wrong here, its come to this component, but not to here!
+                    console.log('check');
+                    mailsForDisplay.sort((firstMail, secondMail) => (firstMail - secondMail))
+                }
+            }
+
+
+            // this.mailstoDisplay = mailsForDisplay
             return mailsForDisplay
-        }
-    },
-};
-
+        },
+    }
+}
 // {
 //     id: 'e104',
 //     from: 'dor',
@@ -96,4 +120,4 @@ export default {
 //     isRead: false,
 //     sentAt: 1551133930594,
 //     to: 'momo@momo.com'
-// },
+//

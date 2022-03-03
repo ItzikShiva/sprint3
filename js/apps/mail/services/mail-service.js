@@ -38,6 +38,7 @@ function getMailsHardCoded() {
             sentAt: 155164560594,
             to: 'momo@momo.com',
             isView: false,
+            isStar: false
 
         },
         {
@@ -49,6 +50,7 @@ function getMailsHardCoded() {
             sentAt: 15511339645694,
             to: 'momo@momo.com',
             isView: false,
+            isStar: false
         },
         {
             id: 'e104',
@@ -59,6 +61,7 @@ function getMailsHardCoded() {
             sentAt: 1551133930594,
             to: 'momo@momo.com',
             isView: false,
+            isStar: false
         },
     ]
 }
