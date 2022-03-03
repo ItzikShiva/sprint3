@@ -7,9 +7,10 @@ import { noteService } from "../services/note-service.js";
 export default {
     props: ['note'],
     template: `
-        <section v-if="note" class="card" v-bind:style="{background: backcolorFirst}">
+        <section v-if="note" class="card" v-bind:style="{backgroundColor: note.style.backgroundColor}">
         <component :is="note.type" :note="note"/>
-        <input type="color" @change="changeBgc" v-model="backcolorFirst"><button>close</button>
+        <input type="color" @change="changeBgc" v-model="backcolorFirst">
+        <button @click="remove">Remove</button>
 
         
         </section>
@@ -24,7 +25,7 @@ export default {
     data() {
         return {
             currType: null,
-            backcolorFirst: 'white',
+            currBgc: null
         }
     },
     created() {
@@ -33,15 +34,17 @@ export default {
         console.log('this.currType', this.currType);
     },
     methods: {
-        remove(id) {
-            console.log(id);
-            this.$emit('remove', id);
-        },
+          
         changeBgc(backcolorFirst) {
-            console.log(backcolorFirst.value);
-            console.log(this.note.style.backgroundColor);
-
+            console.log(this.backcolorFirst);
+            this.note.style.backgroundColor = this.backcolorFirst
+            // this.$emit('onRemove', this.note.id)
             noteService.updateNote(this.note)
+
+        },
+        remove(id) {
+            // console.log('trying to remove', id);
+            this.$emit('onRemove', this.note.id)
 
         }
     },

@@ -2,21 +2,24 @@ export default {
     props: ['note'],
     template: `
 
-    <section v-if="note">
+    <section>
 
         <p>{{note.info.title}}</p>
-        <img class="previewImg" :src="bookImgUrl" alt="" class="img-card">
+        <img :src="bookImgUrl" class="img-card">
 
 
     </section>
-    
-    
+
     `,
     data() {
         return {}
     },
-    created() { },
-    methods: {},
+    created() {
+        
+    },
+    methods: {
+
+    },
     computed: {
         bookImgUrl() {
             return this.note.info.url

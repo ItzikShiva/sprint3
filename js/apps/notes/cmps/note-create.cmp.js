@@ -29,7 +29,7 @@ export default {
             txt: '',
             placeholderContent: 'write note txt',
             style: {
-                backgroundColor: ''
+                backgroundColor:''
             }
         }
     },

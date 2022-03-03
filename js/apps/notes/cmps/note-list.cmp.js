@@ -1,30 +1,44 @@
 import notePreview from "./note-preview.cmp.js";
 
 export default {
-    props: ['notes'],
-    template: `
+  props: ['notes'],
+  template: `
 
-          <section v-if="notes" class="note-list">
-            <note-preview  :key="idx" v-for="(note,idx) in notes" :note="note"></note-preview>
+          <section class="note-list">
+            <note-preview  :key="idx" v-for="(note,idx) in notes" :note="note" @onRemove="removeNote" :firstBgc="firstBgc">
+{{note.style.backgroundColor}}
+
+            </note-preview>
           </section>
     
     ` ,
- 
- 
-    components: {
-        notePreview
-    },
-    // watch: {
-    //     notes: {
-    //         handler() {
-    //             console.log('notes in watcher:', this.notes);
-    //         }
-    //     }
-    // },
-    // mounted() {
-    //     console.log('notes in mounted:', this.notes);
-    // },
-    methods: {
 
+
+  components: {
+    notePreview
+  },
+  data() {
+    return {
+sendBgc:null,
     }
+  },
+  computed: {
+    firstBgc() {
+      if (this.note)
+     this.sendBgc = this.note.style.backgroundColor
+    },
+  },
+  methods: {
+    // remove(id) {
+    //   console.log('trying to remove', id);
+    //   this.$emit('remove', id)
+
+    // },
+    removeNote(id) {
+      console.log('tryingggggggg to remove', id);
+      // noteService.removeNote(id)
+      this.$emit('doRemove', id)
+    }
+
+  }
 }

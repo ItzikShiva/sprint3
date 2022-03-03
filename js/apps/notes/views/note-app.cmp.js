@@ -7,7 +7,7 @@ export default {
     template: `
         <section class="note-app app-main">
             <note-create @create-note="createNote"/>
-            <note-list v-if="notes" :notes="notes" @remove="removeNote">
+            <note-list  :notes="notesForDisplay" @doRemove="removeNoteApp"/>
         </section>
     `,
     components: {
@@ -22,12 +22,18 @@ export default {
         };
     },
     created() {
-        noteService.query()
+this.getUpdateAllNotes()
+
+        
+
+    },
+    methods: {
+        getUpdateAllNotes(){
+            noteService.query()
             .then(notes => {
                 this.notes = notes
             })
-    },
-    methods: {
+        },
         createNote(note) {
             console.log('note', note);
 
@@ -37,34 +43,23 @@ export default {
                     this.notes.push(note)
                     console.log('3456', this.notes);
                 })
-
-
-            // this.note= null
-        }
-
-
+        },
+    
+    
+        removeNoteApp(id) {
+            noteService.removeNote(id)
+            .then(note => {
+                this.getUpdateAllNotes()
+            }
+            )
+            // console.log('tryinggg to remove', id);
     },
-    removeNote(id) {
-        console.log(id);
-        noteService.remove(id)
-            .then(() => {
-                const idx = this.notes.findIndex((note) => note.id === id);
-                this.notes.splice(idx, 1);
-                console.log(this.note);
-                eventBus.emit('show-msg', { txt: 'Deleted succesfully', type: 'success' });
-            })
-            .catch(err => {
-                console.error(err);
-                eventBus.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
-            });
     },
-    setFilter(filterBy) {
-        this.filterBy = filterBy;
-    },
-
     computed: {
         notesForDisplay() {
-            return this.notes
+            var notesForDisplay = null
+            notesForDisplay = this.notes
+            return notesForDisplay
         },
     },
 }

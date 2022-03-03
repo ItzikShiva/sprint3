@@ -9,7 +9,8 @@ export const noteService = {
     addNote,
     save,
     get,
-    updateNote
+    updateNote,
+    removeNote
 }
 
 
@@ -26,7 +27,11 @@ function save(note) {
 }
 
 function get(id) {
-    return storageService.get(NOTE_KEY, note.id);
+    return storageService.get(NOTE_KEY, id);
+}
+
+function removeNote(id) {
+    return storageService.remove(NOTE_KEY, id);
 }
 
 
@@ -45,7 +50,7 @@ function createNotes() {
                     txt: "Fullstack Me Baby!",
                 },
                 style: {
-                    backgroundColor,
+                    backgroundColor:''
                 }
             },
             {
@@ -56,7 +61,7 @@ function createNotes() {
                     title: "Bobi and Me"
                 },
                 style: {
-                    backgroundColor,
+                    backgroundColor:''
                 }
             },
             {
@@ -71,7 +76,7 @@ function createNotes() {
                     ]
                 },
                 style: {
-                    backgroundColor,
+                    backgroundColor:''
                 }
             },
             {
@@ -82,15 +87,15 @@ function createNotes() {
                     title: "Faders Live!!!"
                 },
                 style: {
-                    backgroundColor,
+                    backgroundColor:''
                 }
             },
             
 
 
         ];
-
         utilService.saveToStorage(NOTE_KEY, notes);
+
         console.log(notes);
         return notes;
     }

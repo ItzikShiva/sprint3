@@ -8,10 +8,6 @@ export default {
             <li v-for="note in note.info.todos">{{note.txt}}</li>
         </ul>
     </section>
-    
-    
+
     `,
-    data() {
-        
-    }
 }
