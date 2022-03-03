@@ -1,23 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Karla&family=Montserrat:wght@100;400&family=Poppins:wght@200;400&family=Quicksand&family=Roboto:wght@300;700&display=swap');
 .note-app.app-main {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
     margin-top: 20px;
-    background-color:lightgrey;
+    background-color:rgb(255, 255, 255);
+}
+
+.create-section{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+
+.input-div {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 0px 2px lightgray;
+    width: 500px;
+    align-items: center;
 }
 
 .input-notes {
-    align-self: center;
-    width: 50%;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor:text;
+    font-family: 'Roboto', sans-serif;
+    width: 80%;
+    font-size: 18px;
+
+}
+
+.img-input {
+    opacity: 1;
+    width: 20px;
+    cursor: pointer;
+}
+.img-input:hover {
+    background-color: lightgray;
+    
+}
+
+.note-types {
+    display: flex;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.input-notes:focus {
+    outline: none;
 }
 
 .note-list {
+    display: flex;
+    gap: 10px;
     background-color: white;
+    justify-content: center;
+    width: 100%;
+    
 }
 
 .card {
-    padding: 5px;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
     width: 200px;
     margin-top: 10px;
+    border-radius: 5px;
 }
+
+.card:hover {
+    box-shadow: 4px 4px lightgray;
+
+}
+
+
+.tooltip {
+    position: relative;
+  }
+  .tooltip-text {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    font-size: 0.78rem;
+    background-color: #323232;
+    color: white;
+    opacity: 0.8;
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 5px;
+    visibility: hidden;
+    z-index: 1;
+  }
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+  }
 

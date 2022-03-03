@@ -1,14 +1,12 @@
 import { noteService } from "../services/note-service.js";
 import noteList from "../cmps/note-list.cmp.js";
 import noteCreate from "../cmps/note-create.cmp.js";
-import noteTxt from "../cmps/note-txt.cmp.js";
-import noteImg from "../cmps/note-img.cmp.js";
-import noteTodosCmp from "../cmps/note-todos.cmp.js";
+
 
 export default {
     template: `
         <section class="note-app app-main">
-            <note-create @create-note="createNote" class="card"/>
+            <note-create @create-note="createNote"/>
             <note-list :notes="notesForDisplay"></note-list>
         <component v-if="note" :is="currType" :note="note"/>
         </section>
@@ -16,9 +14,7 @@ export default {
     components: {
         noteList,
         noteCreate,
-        'note-txt': noteTxt,
-        'note-img': noteImg,
-        'note-todos': noteTodosCmp
+     
     },
     data() {
         return {
@@ -36,16 +32,14 @@ export default {
     },
     methods: {
         createNote(note) {
-            console.log(note);
-            this.note = note
+            console.log(this.notes);
             this.currType = note.type
+            noteService.addNote(this.notes,note)
+            // this.note = note
             this.notes.push(note)
-            // switch (note.type) {
-            //     case 'note-txt': this.placeholderContent = 'wwrite a text'; break
-            //     case 'note-img': this.placeholderContent = 'insert an image link'; break
-            //     case 'note-video': this.placeholderContent = 'insert a video link'; break
-            //     case 'note-todos': this.placeholderContent = 'write todos seperate by comma'; break
-            // }
+            console.log(this.notes);
+
+            this.note= null
         }
 
 

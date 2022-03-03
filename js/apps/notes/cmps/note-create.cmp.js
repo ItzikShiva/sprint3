@@ -2,15 +2,21 @@ import { utilService } from "../../../services/util-service.js";
 
 export default {
     template: `
-        <section class="note-app app-main">
-            <input class="input-notes" type="text" :placeholder="placeholderContent" v-model="note.info.txt"/>
-            <div class="note-types">
-                <span @click="setNopteType('note-txt')">A</span>
-                <span @click="setNopteType('note-img')">📷</span>
-                <span @click="setNopteType('note-video')">🎥</span>
-                <span @click="setNopteType('note-todos')">📃</span>
+        <section class="create-section">
+            <div class="input-div">
+                <input class="input-notes" type="text" :placeholder="placeholderContent" v-model="note.info.txt"/>
+                <div class="note-types">
+                    <span @click="createNote"><img class="img-input" src="/img/writing.png" alt=""></span>
+                    <span @click="setNopteType('note-txt')"><img class="img-input" src="/img/font-symbol-of-letter-a.png" alt="">
+</span>
+                    <span @click="setNopteType('note-img')"><img class="img-input" src="/img/image.png" alt=""></span>
+                    <span @click="setNopteType('note-video')"><img class="img-input" src="/img/youtube.png" alt=""></span>
+                    <span @click="setNopteType('note-todos')"><img class="img-input" src="/img/list.png" alt=""></span>
+                </div>
             </div>
-            <button @click="createNote">CREATE</button>
+            <div>
+                <!-- <button @click="createNote">CREATE</button> -->
+            </div>
         </section>
     `,
     components: {
@@ -19,11 +25,8 @@ export default {
     data() {
         return {
             note: {
-                id: utilService.makeId(length = 4),
+                id: utilService.makeId(length = 6),
                 type: 'note-txt',
-                style: {
-                    backgroundColor: utilService.getRandomColor()
-                },
                 info: {
                     txt: ""
                 },
@@ -47,7 +50,8 @@ export default {
         },
         createNote() {
             if (!this.note.info.txt) return
-            this.$emit('create-note', {...this.note})
+            this.$emit('create-note', { ...this.note })
+            this.note.isPinned = false
         }
 
     },

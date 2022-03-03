@@ -1,11 +1,12 @@
 import noteTxt from "./note-txt.cmp.js";
 import noteImg from "./note-img.cmp.js";
 import noteTodos from "./note-todos.cmp.js";
+import noteVideo from "./note-video.cmp.js";
 
 export default {
     props: ['note'],
     template: `
-        <section :style="{'background-color': noteBackground}" class="note-preview" v-if="note">
+        <section :style="{'background-color': noteBackground}" v-if="note">
          <p>{{titleToRender}}</p>
         <img :style="{width:'50px'}" v-if="isTypeImg" :src="noteImgUrl" alt="">
         <div class="todo-list">
@@ -14,12 +15,15 @@ export default {
                 <li v-for="note in noteTodos" :key="note.id">{{note.txt}}</li>
             </ul>
         </div>
+      
+        
         </section>
     `,
     components: {
         noteTxt,
         noteImg,
-        noteTodos
+        noteTodos,
+        noteVideo
 
     },
     data() {
@@ -28,6 +32,7 @@ export default {
             isTextType: false,
             isImgType: false,
             isTodosType: false,
+            isVideoType: false,
             // isTodoType
         }
     },
@@ -35,6 +40,7 @@ export default {
         if (this.currType === 'note-txt') this.isTextType = true;
         else if (this.currType === 'note-img') this.isImgType = true;
         else if (this.currType === 'note-todos') this.isTodosType = true;
+        else if (this.currType === 'note-video') this.isVideoType = true;
     },
     methods: {},
     computed: {
@@ -45,7 +51,7 @@ export default {
             return this.note.info.url
         },
         noteBackground() {
-            return this.note.style.backgroundColor
+            return this.note?.style?.backgroundColor
         },
         titleToRender() {
             if (this.note.info.txt) return this.note.info.txt
@@ -53,7 +59,12 @@ export default {
         },
         noteTodos() {
             return this.note.info.todos
+        },
+        noteVideo() {
+            console.log(this.note.info.video);
+            return this.note.info.video
         }
+
 
     }
 }

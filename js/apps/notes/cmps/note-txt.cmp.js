@@ -16,5 +16,9 @@ export default {
         return {
             // note: null
         }
+    },
+    created() {
+        console.log('asdf');
     }
+
 }
