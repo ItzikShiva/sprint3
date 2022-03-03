@@ -135,12 +135,36 @@ body {
 /* =========================   MAIL    ======================= */
 
 .mail-app {
+    margin-left: 20px;
     height: 90vh;
     background-color: #EDE7D9;
 }
 
-.mails-list ul {
+.mail-menu-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.mail-menu {
+    /* position: absolute; */
+    width: 20%;
+    height: 500px;
+    background-color: aquamarine;
+}
+
+.mail-list {
     list-style: none;
+    margin: 0;
+    width: 80%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+}
+
+.mail-list ul {
+    list-style: none;
+    width: 100%;
     margin: 0;
     padding: 10px;
     display: flex;
@@ -148,7 +172,7 @@ body {
     flex-wrap: wrap;
 }
 
-.mails-list li {
+.mail-list li {
     /* list-style: none;
     margin: 0;
     padding: 10px; */
@@ -162,7 +186,7 @@ body {
 .mail-preview {
     padding: 10px;
     /* margin: 10px; */
-    /* width: 90%; */
+    width: 90%;
     /* height: 150px; */
     background-color: #A49694;
     display: flex;

@@ -36,6 +36,7 @@ function postMany(entityType, newEntities) {
         })
 }
 
+//update 1 thing
 function put(entityType, updatedEntity) {
     return query(entityType)
         .then(entities => {

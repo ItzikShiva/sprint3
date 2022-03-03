@@ -10,7 +10,8 @@ export const mailService = {
     query,
     getMailsHardCoded,
     saveMailsToStorage,
-    remove
+    remove,
+    updateMail
 };
 
 function getTimeStringFromDate(date) {
@@ -18,6 +19,9 @@ function getTimeStringFromDate(date) {
     return sentDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
 }
 
+function updateMail(mail) {
+    storageService.put(STORAGE_KEY, mail)
+}
 
 function query() {
     // return getMailsHardCoded()
@@ -29,7 +33,7 @@ function getMailsHardCoded() {
             id: 'e102',
             from: 'ron',
             subject: 'Miss you! Miss you! Miss you!',
-            body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, ducimus?',
+            body: '12check Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, ducimus?',
             isRead: false,
             sentAt: 155164560594,
             to: 'momo@momo.com',
@@ -40,7 +44,7 @@ function getMailsHardCoded() {
             id: 'e1013',
             from: 'or',
             subject: 'shiva! shiva! shiva! shiva! shiva!',
-            body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, cum!',
+            body: '78check Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, cum!',
             isRead: false,
             sentAt: 15511339645694,
             to: 'momo@momo.com',
