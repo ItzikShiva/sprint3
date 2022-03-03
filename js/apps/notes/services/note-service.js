@@ -5,7 +5,8 @@ const NOTE_KEY = 'notes';
 createNotes()
 
 export const noteService = {
-    query
+    query,
+    addNote
 }
 
 function query() {
@@ -13,9 +14,6 @@ function query() {
 }
 
 
-function createNote(){
-    
-}
 
 function createNotes() {
 
@@ -59,7 +57,19 @@ function createNotes() {
                 style: {
                     backgroundColor: utilService.getRandomColor()
                 }
-            }
+            },
+            {
+                id: "n104",
+                type: "note-video",
+                info: {
+                    video: "https://www.youtube.com/watch?v=9BBqNcNqWOE",
+                    title: "Faders Live!!!"
+                },
+                style: {
+                    backgroundColor: utilService.getRandomColor()
+                }
+            },
+            
 
 
         ];
@@ -68,4 +78,9 @@ function createNotes() {
         console.log(notes);
         return notes;
     }
+}
+
+function addNote(notes,newNote){
+    console.log('checkk',notes,newNote);
+    return storageService.post(notes, newNote)
 }

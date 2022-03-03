@@ -6,8 +6,8 @@ export default {
 
     <section class="note-list">
 
-  <note-preview :key="note.id" v-for="note in notes" :note="note" class="card"/>
-
+  <note-preview  :key="note.id" v-for="note in notes" :note="note" class="card"></note-preview>
+  
         </section>
     
     ` ,
