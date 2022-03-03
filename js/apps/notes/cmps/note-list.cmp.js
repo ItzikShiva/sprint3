@@ -4,24 +4,27 @@ export default {
     props: ['notes'],
     template: `
 
-    <section class="note-list">
-
-  <note-preview  :key="note.id" v-for="note in notes" :note="note" class="card"></note-preview>
-  
-        </section>
+          <section v-if="notes" class="note-list">
+            <note-preview  :key="idx" v-for="(note,idx) in notes" :note="note"></note-preview>
+          </section>
     
     ` ,
+ 
+ 
     components: {
         notePreview
     },
-    watch: {
-        notes: {
-            handler() {
-                console.log('notes in watcher:', this.notes);
-            }
-        }
-    },
-    mounted() {
-        console.log('notes in mounted:', this.notes);
+    // watch: {
+    //     notes: {
+    //         handler() {
+    //             console.log('notes in watcher:', this.notes);
+    //         }
+    //     }
+    // },
+    // mounted() {
+    //     console.log('notes in mounted:', this.notes);
+    // },
+    methods: {
+
     }
 }

@@ -2,56 +2,55 @@ import noteTxt from "./note-txt.cmp.js";
 import noteImg from "./note-img.cmp.js";
 import noteTodos from "./note-todos.cmp.js";
 import noteVideo from "./note-video.cmp.js";
+import { noteService } from "../services/note-service.js";
 
 export default {
     props: ['note'],
     template: `
-        <section :style="{'background-color': noteBackground}" v-if="note">
-         <p>{{titleToRender}}</p>
-        <img :style="{width:'50px'}" v-if="isTypeImg" :src="noteImgUrl" alt="">
-        <div class="todo-list">
-            <p>{{note.info.label}}</p>
-            <ul>
-                <li v-for="note in noteTodos" :key="note.id">{{note.txt}}</li>
-            </ul>
-        </div>
-      
+        <section v-if="note" class="card" v-bind:style="{background: backcolorFirst}">
+        <component :is="note.type" :note="note"/>
+        <input type="color" @change="changeBgc" v-model="backcolorFirst"><button>close</button>
+
         
         </section>
     `,
     components: {
-        noteTxt,
-        noteImg,
-        noteTodos,
-        noteVideo
+        'note-txt': noteTxt,
+        'note-img': noteImg,
+        'note-todos': noteTodos,
+        'note-video': noteVideo
 
     },
     data() {
         return {
-            currType: this.note.type,
-            isTextType: false,
-            isImgType: false,
-            isTodosType: false,
-            isVideoType: false,
-            // isTodoType
+            currType: null,
+            backcolorFirst: 'white',
         }
     },
     created() {
-        if (this.currType === 'note-txt') this.isTextType = true;
-        else if (this.currType === 'note-img') this.isImgType = true;
-        else if (this.currType === 'note-todos') this.isTodosType = true;
-        else if (this.currType === 'note-video') this.isVideoType = true;
+        console.log('this.note', this.note);
+        this.currType = this.note.type
+        console.log('this.currType', this.currType);
     },
-    methods: {},
+    methods: {
+        remove(id) {
+            console.log(id);
+            this.$emit('remove', id);
+        },
+        changeBgc(backcolorFirst) {
+            console.log(backcolorFirst.value);
+            console.log(this.note.style.backgroundColor);
+
+            noteService.updateNote(this.note)
+
+        }
+    },
     computed: {
         isTypeImg() {
             return this.note.type === 'note-img'
         },
         noteImgUrl() {
             return this.note.info.url
-        },
-        noteBackground() {
-            return this.note?.style?.backgroundColor
         },
         titleToRender() {
             if (this.note.info.txt) return this.note.info.txt
@@ -66,7 +65,8 @@ export default {
         }
 
 
-    }
+    },
+
 }
 
 

@@ -3,8 +3,9 @@ export default {
     template: `
 
     <section v-if="note">
+
         <p>{{note.info.title}}</p>
-        <img class="previewImg" :src="bookImgUrl" alt="">
+        <img class="previewImg" :src="bookImgUrl" alt="" class="img-card">
 
 
     </section>

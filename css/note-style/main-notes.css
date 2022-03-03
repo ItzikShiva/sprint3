@@ -39,6 +39,16 @@
 
 }
 
+.img-card {
+    height: 100%;
+    width: 100%;
+}
+
+.video {
+    height: 100%;
+    width: 100%;
+}
+
 .img-input {
     opacity: 1;
     width: 20px;
@@ -69,37 +79,24 @@
 }
 
 .card {
+    /* display: flex; */
+    flex-direction: column;
     font-family: 'Roboto', sans-serif;
     padding: 10px;
     width: 200px;
     margin-top: 10px;
     border-radius: 5px;
+    background-color: rgb(207, 193, 174);
 }
 
-.card:hover {
+.card button {
+    position: relative;
+    bottom: 0;
+}
+
+/* .card:hover {
     box-shadow: 4px 4px lightgray;
 
-}
+} */
 
-
-.tooltip {
-    position: relative;
-  }
-  .tooltip-text {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    font-size: 0.78rem;
-    background-color: #323232;
-    color: white;
-    opacity: 0.8;
-    padding: 5px;
-    white-space: nowrap;
-    border-radius: 5px;
-    visibility: hidden;
-    z-index: 1;
-  }
-  .tooltip:hover .tooltip-text {
-    visibility: visible;
-  }
 

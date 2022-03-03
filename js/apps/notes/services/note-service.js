@@ -6,11 +6,27 @@ createNotes()
 
 export const noteService = {
     query,
-    addNote
+    addNote,
+    save,
+    get,
+    updateNote
 }
 
+
+function updateNote(note){
+return storageService.put(NOTE_KEY,note)
+}
 function query() {
     return storageService.query(NOTE_KEY)
+}
+
+function save(note) {
+    if (note.id) return storageService.put(NOTE_KEY, note);
+    else return storageService.post(NOTE_KEY, note);
+}
+
+function get(id) {
+    return storageService.get(NOTE_KEY, note.id);
 }
 
 
@@ -29,7 +45,7 @@ function createNotes() {
                     txt: "Fullstack Me Baby!",
                 },
                 style: {
-                    backgroundColor: utilService.getRandomColor()
+                    backgroundColor,
                 }
             },
             {
@@ -40,7 +56,7 @@ function createNotes() {
                     title: "Bobi and Me"
                 },
                 style: {
-                    backgroundColor: utilService.getRandomColor()
+                    backgroundColor,
                 }
             },
             {
@@ -55,7 +71,7 @@ function createNotes() {
                     ]
                 },
                 style: {
-                    backgroundColor: utilService.getRandomColor()
+                    backgroundColor,
                 }
             },
             {
@@ -66,7 +82,7 @@ function createNotes() {
                     title: "Faders Live!!!"
                 },
                 style: {
-                    backgroundColor: utilService.getRandomColor()
+                    backgroundColor,
                 }
             },
             
@@ -80,7 +96,8 @@ function createNotes() {
     }
 }
 
-function addNote(notes,newNote){
-    console.log('checkk',notes,newNote);
-    return storageService.post(notes, newNote)
+
+function addNote(newNote){
+    console.log('newNote',newNote);
+    return storageService.post(NOTE_KEY, newNote)
 }
