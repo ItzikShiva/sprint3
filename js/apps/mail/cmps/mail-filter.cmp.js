@@ -3,8 +3,7 @@ export default {
         <section class="mail-filter">
             <!-- <label> Filter Menu: </label> -->
             <div class="search-container">
-                <span> <b>Search (subject and body): </b>
-                <input class="mail-search" @input="setFilter" type="text" v-model="filterBy.words" placeholder="Search..."> </span>
+                <input class="mail-search" @input="setFilter" type="text" v-model="filterBy.words" placeholder="Search..."> 
             </div>
             
             <!-- ++++++++++++++++filter by READ \UNREAD+++++++++++++++ -->
@@ -18,7 +17,7 @@ export default {
                 <input type="radio" id="three" value="unRead" v-model="picked" @click="radioFilter">
                 <label for="three">unRead</label>
                 <br>
-                <span>Show: <b>{{ picked }}</b></span>
+                <!-- <span>Show: <b>{{ picked }}</b></span> -->
             </div>
 
         </section>

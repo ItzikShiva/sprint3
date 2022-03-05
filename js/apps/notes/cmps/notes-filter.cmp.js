@@ -7,9 +7,9 @@ export default {
             </div>
             
 
-            <input type="radio"  value="note-txt" v-model="filterBy" @click="setFilter">
-            <label for="one">All</label>
             <div class="radio-section">
+                <input type="radio"  value="note-txt" v-model="filterBy" @click="setFilter">
+                <label for="one">All</label>
                 <input type="radio"  value="note-txt" v-model="filterBy.type" @change="setFilterByType">
                 <label for="one">Text</label>
     

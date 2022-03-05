@@ -8,10 +8,12 @@
 
 @import '/css/note-style/main-notes.css';
 @import '/css/note-style/notes-css.css';
+@import '/css/note-style/el-user-message.css';
+@import '/css/note-style/main-page.css';
 
 /* MAIL STYLE */
 
-@import '/css/mail-style/book-style.css';
+@import '/css/mail-style/mail-style.css';
 
 /* BOOK-STYLE */
 
