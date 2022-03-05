@@ -75,7 +75,7 @@
     background-color: white;
     justify-content: center;
     width: 100%;
-    flex: 1 1 0px;
+    /* flex: 1 1 0px; */
     margin-bottom: 30px;
 }
 
@@ -87,9 +87,9 @@
     column-gap: 10px;
     padding: 20px;
     width: 250px;
-    min-height: 200px;
+    height: 100%;
     border-radius: 5px;
-    overflow: visible;
+    /* overflow: visible; */
 }
 
 .card button {
@@ -126,6 +126,8 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
+
 
 }
 
@@ -138,7 +140,13 @@
     margin-left: 10px;
 }
 
+.pinned-text {
+    font-weight: bold;
+    color: rgb(128, 128, 128);
+}
 
+.others-text {
+    font-weight: bold;
+    color: rgb(128, 128, 128);
 
-
-
+}

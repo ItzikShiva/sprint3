@@ -11,15 +11,15 @@ export default {
     template: `
         <section @mouseover="hover = true" @mouseleave="hover = false" class="card" v-bind:style="{backgroundColor: note.style.backgroundColor}">
             <!-- <Transition> -->
+                
+                <!-- <img class="check-circle" src="/img/check.png" alt="remove"> -->
+                
+                <div class="pin">
+                    <span @click="pinNote"><img class="img-input" src="/img/thumbtack.png" alt="pin"></span>
+                </div>
                 <div class="preview-renderd">
                     <component :is="note.type" :note="note"/>
                 </div>
-                
-                <!-- <img class="check-circle" src="/img/check.png" alt="remove"> -->
-
-                    <div class="pin">
-                        <span @click="pinNote"><img class="img-input" src="/img/thumbtack.png" alt="pin"></span>
-                    </div>
             
                 <div class="tools" v-if="hover">
 
@@ -31,10 +31,10 @@ export default {
                     <div class="material-icons-outlined hover">
                         <span @click="remove"><img class="img-input" src="/img/bin.png" alt="remove"></span>
                     </div>
-
+<!-- 
                     <div class="material-icons-outlined hover">
                         <span @click=""><img class="img-input" src="/img/pencil.png" alt=""></span>
-                    </div>
+                    </div> -->
 
                     <div class="material-icons-outlined hover">
                         <span @click="duplicateNote"><img class="img-input" src="/img/duplicate.png" alt=""></span>
@@ -42,7 +42,7 @@ export default {
                     <!-- ITZIK ADD: -->
                     <router-link :to="'/appsus/mail/'+note.id">
                         <div class="material-icons-outlined hover">
-                            <span @click="sendingMail">send mail<img class="img-input" src="" alt=""></span>
+                            <span @click="sendingMail"><img class="img-input" src="/img/send.png" alt=""></span>
                         </div>
                     </router-link>  
                     <!-- / ITZIK ADD: -->

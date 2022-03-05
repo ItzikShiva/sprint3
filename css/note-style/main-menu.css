@@ -8,7 +8,65 @@
     transition: opacity .6s;
 }
 
-body.menu-open .main-screen {
+body.main-screen {
     pointer-events: auto;
     opacity: 1;
 }
+
+.menu-img {
+    width: 50px;
+    cursor: pointer;
+}
+
+.menu-img-btn:hover {
+    box-shadow: 2px 2px lightgray;
+
+}
+
+.img-menu-span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+    padding: 15px;
+    height: 100%;
+    flex-basis: 20%;
+}
+
+.nav-bar {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    top: 70px;
+    right: 5%;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: solid 1px #5f6368 ;
+    border-radius: 8px;
+    gap: 20px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    flex: 1 1 0px;
+    cursor: pointer;
+
+}
+
+.nav-bar > .menu-img-btn {
+    flex: 50%;
+}
+
+.menu-img-btn {
+    width: 30px;
+    cursor: pointer;
+
+}
+
+.radio-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+

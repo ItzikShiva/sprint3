@@ -5,7 +5,8 @@ export default {
   template: `
 
           <section v-if="pinnedNotes.length" class="note-list">
-            <p v-if="pinnedNotes" >Pinned!</p>
+            
+            <p v-if="pinnedNotes" class="pinned-text">PINNED</p>
             <note-preview  :key="idx" v-for="(note,idx) in pinnedNotes" :note="note" @onRemove="removeNote" @onPin="pinToTop" @onDuplicate="onDuplicateNote" :firstBgc="firstBgc">
                     {{note.style.backgroundColor}}
 
@@ -13,7 +14,7 @@ export default {
           </section>  
 
           <section class="note-list">
-            <p v-if="pinnedNotes.length">Others</p>
+            <p v-if="pinnedNotes.length" class="others-text">OTHERS</p>
             <note-preview  :key="idx" v-for="(note,idx) in notes" :note="note" @onRemove="removeNote" @onPin="pinToTop"  @onDuplicate="onDuplicateNote" :firstBgc="firstBgc">
                     {{note.style.backgroundColor}}
 
