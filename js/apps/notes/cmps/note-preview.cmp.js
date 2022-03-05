@@ -15,7 +15,8 @@ export default {
                 <!-- <img class="check-circle" src="/img/check.png" alt="remove"> -->
                 
                 <div class="pin">
-                    <span @click="pinNote"><img class="img-input" src="/img/thumbtack.png" alt="pin"></span>
+                <span v-if="!note.isPinned" @click="pinNote">touch to pin</span>
+                    <span v-if="note.isPinned" @click="pinNote"><img class="img-input" src="/img/thumbtack.png" alt="pin"></span>
                 </div>
                 <div class="preview-renderd">
                     <component :is="note.type" :note="note"/>

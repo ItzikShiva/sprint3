@@ -14,8 +14,10 @@ export const noteService = {
     pinToUp,
     pinnedNotesQuery,
     duplicateNotes,
-    saveNoteToStorage
+    saveNoteToStorage,
+    createNote
 }
+
 
 function saveNoteToStorage(note) {
     return storageService.post(NOTE_KEY, note)
@@ -63,8 +65,21 @@ function duplicateNotes(id) {
 
 }
 
+function createNote() {
+    var newNote = {
+        id: "n101",
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: 'text',
+        },
+        style: {
+            backgroundColor: 'pink'
+        }
 
-
+    }
+    return newNote
+}
 
 function createNotes() {
 

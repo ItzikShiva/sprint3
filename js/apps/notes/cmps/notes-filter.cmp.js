@@ -8,19 +8,19 @@ export default {
             
 
             <div class="radio-section">
-                <input type="radio"  value="note-txt" v-model="filterBy" @click="setFilter">
+                <input type="radio"  value="all" v-model="filterBy.type" @change="setFilterByType">
                 <label for="one">All</label>
                 <input type="radio"  value="note-txt" v-model="filterBy.type" @change="setFilterByType">
-                <label for="one">Text</label>
+                <label for="two">Text</label>
     
                 <input type="radio"  value="note-img" v-model="filterBy.type" @change="setFilterByType">
-                <label for="two">Image</label>
+                <label for="three">Image</label>
     
                 <input type="radio"  value="note-todos" v-model="filterBy.type" @change="setFilterByType">
-                <label for="three">Todo List</label>
+                <label for="four">Todo List</label>
     
                 <input type="radio"  value="note-video" v-model="filterBy.type" @change="setFilterByType">
-                <label for="three">Video</label>
+                <label for="five">Video</label>
             </div>
         </section>
     `,
@@ -32,7 +32,7 @@ export default {
             }
         };
     },
-    mounted(){
+    mounted() {
         this.$refs.notesInput.focus()
     },
     methods: {

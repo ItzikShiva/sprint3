@@ -18,24 +18,18 @@ export default {
     methods: {
 
         focusField() {
-<<<<<<< HEAD
             console.log('hhfgfgh');
             // this.note.info.txt;
-=======
             this.note.info.txt;
 
 
->>>>>>> 9d60b0a02c2bb33c4d4fa0acb2babe41553f86c7
         },
         blurField() {
             this.editField = '';
         },
         showField() {
-<<<<<<< HEAD
             return (this.note.info.txt == '' || this.editField == note.info.txt)
-=======
-          return (this.note.info.txt === '' || this.editField === note.info.txt)
->>>>>>> 9d60b0a02c2bb33c4d4fa0acb2babe41553f86c7
+            return (this.note.info.txt === '' || this.editField === note.info.txt)
         }
     }
 }

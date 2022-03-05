@@ -56,12 +56,12 @@ export default {
                 })
         },
         createNote(note) {
-            console.log('note:', note);
+            // console.log('new note!!!note:', note);
             this.currType = note.type
-            noteService.addNote({...note })
+            noteService.addNote(note)
                 .then(note => {
                     this.notes.push(note)
-                    console.log('created');
+                    console.log('created note:', note);
                     eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'el-success' })
                 })
         },
@@ -118,12 +118,13 @@ export default {
             var notesForDisplay = null
 
             notesForDisplay = this.notes
-
-            if (!this.filterByText && !this.filterbyType) return notesForDisplay;
+                // this.filterByText === 'all'
+            console.log(this.filterbyType);
+            if (!this.filterbyType || (this.filterbyType === 'all')) return notesForDisplay;
 
             if (this.filterByText) {
 
-                console.log(this.filterByText);
+                // console.log(this.filterByText);
 
                 const regex = new RegExp(this.filterByText, 'i');
 
