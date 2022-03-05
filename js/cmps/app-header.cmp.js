@@ -1,3 +1,4 @@
+
 export default {
     template: `
         <header class="app-header-global">
@@ -33,7 +34,7 @@ export default {
                 <!-- <router-link to="/about">About</router-link> -->
             </nav>
             <span class="btn-menu" v-on:click="seen = !seen">
-                <img class="menu-img-btn" src="./img/menu.png" alt=""></span>
+                <img class="menu-img-btn" src="../../img/menu.png" alt=""></span>
         </header>
     
     `,
