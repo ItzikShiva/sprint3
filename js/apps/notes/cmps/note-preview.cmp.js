@@ -7,10 +7,39 @@ import { noteService } from "../services/note-service.js";
 export default {
     props: ['note'],
     template: `
-        <section v-if="note" class="card" v-bind:style="{backgroundColor: note.style.backgroundColor}">
-        <component :is="note.type" :note="note"/>
-        <input type="color" @change="changeBgc" v-model="backcolorFirst">
-        <button @click="remove">Remove</button>
+        <section @mouseover="hover = true" @mouseleave="hover = false" class="card" v-bind:style="{backgroundColor: note.style.backgroundColor}">
+            <!-- <Transition> -->
+            
+                <div class="preview-renderd">
+                    <component :is="note.type" :note="note"/>
+                </div>
+                
+                <!-- <img class="check-circle" src="/img/check.png" alt="remove"> -->
+
+                    <div class="pin">
+                        <span @click="pinNote"><img class="img-input" src="/img/thumbtack.png" alt="pin"></span>
+                    </div>
+            
+                <div class="tools" v-if="hover">
+
+                    <div class="material-icons-outlined hover">
+                        <label for="color-input" v-show="isShown" @click="!isShown"><img class="img-input" src="/img/pallete.png" alt="remove"></label>
+                        <input type="color" @change="changeBgc" v-model="backcolorFirst" id="color-input" v-show="!isShown" @click="isShown">
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span @click="remove"><img class="img-input" src="/img/bin.png" alt="remove"></span>
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span><img class="img-input" src="/img/pencil.png" alt=""></span>
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span @click="duplicateNote"><img class="img-input" src="/img/duplicate.png" alt=""></span>
+                    </div>
+                </div>
+        <!-- </Transition> -->
 
         
         </section>
@@ -25,26 +54,37 @@ export default {
     data() {
         return {
             currType: null,
-            currBgc: null
+            backcolorFirst: null,
+            isShown: true,
+            hover: false,
+
         }
     },
     created() {
-        console.log('this.note', this.note);
         this.currType = this.note.type
-        console.log('this.currType', this.currType);
     },
     methods: {
           
-        changeBgc(backcolorFirst) {
+        changeBgc() {
             console.log(this.backcolorFirst);
             this.note.style.backgroundColor = this.backcolorFirst
             // this.$emit('onRemove', this.note.id)
             noteService.updateNote(this.note)
 
         },
-        remove(id) {
-            // console.log('trying to remove', id);
+        remove() {
             this.$emit('onRemove', this.note.id)
+            
+        },
+        
+        pinNote() {
+            console.log('trying to pin', id);
+            this.$emit('onPin', this.note.id)
+        },
+
+        duplicateNote() {
+            console.log('prwview-check');
+            this.$emit('onDuplicate', this.note.id)
 
         }
     },

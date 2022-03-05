@@ -15,6 +15,7 @@ function shortingSentences(sentence, wordsCount) {
 }
 
 function saveToStorage(key, value) {
+    console.log('in save');
     localStorage.setItem(key, JSON.stringify(value) || null);
 }
 

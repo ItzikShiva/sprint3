@@ -1,19 +1,36 @@
+import { utilService } from "../../../services/util-service.js";
+
 export default {
     template: `
         <section class="create-section">
+
             <div class="input-div">
-                <input class="input-notes" type="text" :placeholder="placeholderContent" v-model="txt"/>
+
+                <input class="input-notes" type="text" :placeholder="note.placeholderContent" v-model="note.info.txt"/>
+
                 <div class="note-types">
-                    <span @click="createNote"><img class="img-input" src="/img/writing.png" alt=""></span>
-                    <span @click="setNopteType('note-txt')"><img class="img-input" src="/img/font-symbol-of-letter-a.png" alt="">
-                    </span>
-                    <span @click="setNopteType('note-img')"><img class="img-input" src="/img/image.png" alt=""></span>
-                    <span @click="setNopteType('note-video')"><img class="img-input" src="/img/youtube.png" alt=""></span>
-                    <span @click="setNopteType('note-todos')"><img class="img-input" src="/img/list.png" alt=""></span>
+
+                    <div class="material-icons-outlined hover">
+                        <span><img class="img-input" src="/img/writing.png" alt=""></span>
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span @click="setNopteType('note-txt')"><img class="img-input" src="/img/font-symbol-of-letter-a.png" alt=""></span>
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span @click="setNopteType('note-img')"><img class="img-input" src="/img/image.png" alt=""></span>
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span @click="setNopteType('note-video')"><img class="img-input" src="/img/youtube.png" alt=""></span>
+                    </div>
+
+                    <div class="material-icons-outlined hover">
+                        <span @click="setNopteType('note-todos')"><img class="img-input" src="/img/list.png" alt=""></span>
+                    </div>
+                    <button @click="createNote">Add</button>
                 </div>
-            </div>
-            <div>
-                <!-- <button @click="createNote">CREATE</button> -->
             </div>
         </section>
     `,
@@ -24,13 +41,16 @@ export default {
         return {
             note: {
                 type: 'note-txt',
-                isPinned: true,
+                isPinned: false,
+                info: {
+                    txt: '',
+                },
+                style: {
+                    backgroundColor: utilService.getRandomColor()
+                },
+                placeholderContent: 'write note txt',
             },
-            txt: '',
-            placeholderContent: 'write note txt',
-            style: {
-                backgroundColor:''
-            }
+
         }
     },
 
@@ -44,9 +64,12 @@ export default {
             }
         },
         createNote() {
-            if (!this.txt) return
-            this.$emit('create-note', { ...this.note, info: { txt: this.txt } })
-            this.txt = ''
+            // if (!this.note.info.txt) return
+            const note = { ...this.note }
+            console.log('note:',note);
+            this.$emit('create-note', note)
+
+            // this.note.info.txt = ''
         }
 
     },

@@ -1,0 +1,20 @@
+.user-msg{
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    top: 50px;
+    right: 10px;
+    padding: 10px;
+}
+
+.el-success {
+    float: left;
+    font-family: 'Roboto', sans-serif;
+    color: orange;
+    background-color: rgb(0, 0, 0);
+}
+
+.error {
+    background-color: red;
+    color: white;
+}

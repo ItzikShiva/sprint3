@@ -10,15 +10,26 @@ export const noteService = {
     save,
     get,
     updateNote,
-    removeNote
+    removeNote,
+    pinToUp,
+    pinnedNotesQuery,
+    duplicateNotes,
+    saveNoteToStorage
 }
 
+function saveNoteToStorage(note) {
+    return utilService.saveToStorage(NOTE_KEY, note)
+}
 
-function updateNote(note){
-return storageService.put(NOTE_KEY,note)
+function updateNote(note) {
+    return storageService.put(NOTE_KEY, note)
 }
 function query() {
     return storageService.query(NOTE_KEY)
+}
+function pinnedNotesQuery() {
+    return storageService.query('pinnedNotes')
+
 }
 
 function save(note) {
@@ -34,6 +45,17 @@ function removeNote(id) {
     return storageService.remove(NOTE_KEY, id);
 }
 
+function pinToUp(id) {
+    return storageService.put(NOTE_KEY, id);
+
+}
+
+function duplicateNotes(id) {
+    return storageService.get(NOTE_KEY, id)
+
+}
+
+
 
 
 function createNotes() {
@@ -45,28 +67,30 @@ function createNotes() {
             {
                 id: "n101",
                 type: "note-txt",
-                isPinned: true,
+                isPinned: false,
                 info: {
                     txt: "Fullstack Me Baby!",
                 },
                 style: {
-                    backgroundColor:''
+                    backgroundColor: 'pink'
                 }
             },
             {
                 id: "n102",
                 type: "note-img",
+                isPinned: false,
                 info: {
                     url: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=-1&s=1",
                     title: "Bobi and Me"
                 },
                 style: {
-                    backgroundColor:''
+                    backgroundColor: 'yellow'
                 }
             },
             {
                 id: "n103",
                 type: "note-todos",
+                isPinned: false,
                 info: {
 
                     label: "Get my stuff together",
@@ -76,21 +100,22 @@ function createNotes() {
                     ]
                 },
                 style: {
-                    backgroundColor:''
+                    backgroundColor: 'lightgreen'
                 }
             },
             {
                 id: "n104",
                 type: "note-video",
+                isPinned: false,
                 info: {
                     video: "https://www.youtube.com/watch?v=9BBqNcNqWOE",
                     title: "Faders Live!!!"
                 },
                 style: {
-                    backgroundColor:''
+                    backgroundColor: 'lightblue'
                 }
             },
-            
+
 
 
         ];
@@ -102,7 +127,7 @@ function createNotes() {
 }
 
 
-function addNote(newNote){
-    console.log('newNote',newNote);
+function addNote(newNote) {
+    console.log('newNote', newNote);
     return storageService.post(NOTE_KEY, newNote)
 }

@@ -1,29 +1,29 @@
+import { noteService } from "../services/note-service.js";
+
 export default {
     props: ['note'],
     template: `
 
     <section>
-       <p>{{note.info.txt}}</p>
+        <div class="field">
+            <span class="field-value" v-show="!showField" @click="focusField" v-bind:style="{backgroundColor: note.style.backgroundColor}">{{note.info.txt}}</span>
+            <input v-model="note.info.txt" v-show="showField" id="user-name" type="text" class="field-value form-control" @focus="focusField" @blur="blurField" v-bind:style="{backgroundColor: note.style.backgroundColor}">
+        </div>
+
     </section>
     
     
     `,
-    //  <img :style="{width:'50px'}" v-if="isTypeImg" :src="noteImgUrl" alt="">
-    //     <div class="todo-list">
-    //         <p>{{note.info.label}}</p>
-    //         <ul>
-    //             <li v-for="note in noteTodos" :key="note.id">{{note.txt}}</li>
-    //         </ul>
-    //         <button @click="remove(note.id)">close</button>
-    //         <input type="color" name="" id="" v-for="note">
-    //     </div>
 
-    data() {
-        return {
-            // note: null
+    methods: {
+        focusField() {
+            this.note.info.txt;
+        },
+        blurField() {
+            this.editField = '';
+        },
+        showField() {
+            return (this.note.info.txt == '' || this.editField == note.info.txt)
         }
-    },
-    created() {
     }
-
 }

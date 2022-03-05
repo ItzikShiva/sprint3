@@ -1,12 +1,21 @@
 import notePreview from "./note-preview.cmp.js";
 
 export default {
-  props: ['notes'],
+  props: ['notes', 'pinnedNotes'],
   template: `
 
+          <section v-if="pinnedNotes.length" class="note-list">
+            <p v-if="pinnedNotes" >Pinned!</p>
+            <note-preview  :key="idx" v-for="(note,idx) in pinnedNotes" :note="note" @onRemove="removeNote" @onPin="pinToTop" @onDuplicate="onDuplicateNote" :firstBgc="firstBgc">
+                    {{note.style.backgroundColor}}
+
+            </note-preview>
+          </section>  
+
           <section class="note-list">
-            <note-preview  :key="idx" v-for="(note,idx) in notes" :note="note" @onRemove="removeNote" :firstBgc="firstBgc">
-{{note.style.backgroundColor}}
+            <p v-if="pinnedNotes.length">Others</p>
+            <note-preview  :key="idx" v-for="(note,idx) in notes" :note="note" @onRemove="removeNote" @onPin="pinToTop"  @onDuplicate="onDuplicateNote" :firstBgc="firstBgc">
+                    {{note.style.backgroundColor}}
 
             </note-preview>
           </section>
@@ -19,26 +28,36 @@ export default {
   },
   data() {
     return {
-sendBgc:null,
+      sendBgc: null,
     }
   },
   computed: {
     firstBgc() {
       if (this.note)
-     this.sendBgc = this.note.style.backgroundColor
+        this.sendBgc = this.note.style.backgroundColor
     },
   },
-  methods: {
-    // remove(id) {
-    //   console.log('trying to remove', id);
-    //   this.$emit('remove', id)
-
-    // },
-    removeNote(id) {
-      console.log('tryingggggggg to remove', id);
-      // noteService.removeNote(id)
-      this.$emit('doRemove', id)
+  watch: {
+    pinnedNotes: {
+      handler() {
+        console.log('click');
+      }
     }
+  }
 
+  ,
+  methods: {
+
+    removeNote(id) {
+      this.$emit('do-remove', id)
+    },
+
+    pinToTop(id) {
+      this.$emit('pin-note', id)
+    },
+    onDuplicateNote(id) {
+      console.log('list-check' ,id);
+      this.$emit('duplicate-noted', id)
+    }
   }
 }
