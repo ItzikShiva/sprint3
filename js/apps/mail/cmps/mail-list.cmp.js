@@ -16,9 +16,8 @@ export default {
             <ul>
                 <li>
                     <mail-sort @sorted="onSorted"> </mail-sort>
-
                 </li>
-                <li v-for="(mail,index) in mailstoDisplay" :key="mail.id" >
+                <li class="mail-list-mails" v-for="(mail,index) in mailstoDisplay" :key="mail.id" >
                    <mail-preview :mail="mail" @mailDeleted="mailWasDelete"/>
                 </li>
             </ul>
@@ -38,9 +37,9 @@ export default {
 
     },
     methods: {
-        mailWasDelete(mailDeletedId) {
+        mailWasDelete(mailDeletedId, mailDeletedRemoveAt) {
             console.log('id', mailDeletedId);
-            this.$emit('mailDeleted', mailDeletedId);
+            this.$emit('mailDeleted', mailDeletedId, mailDeletedRemoveAt);
             //this for the mails-status cmp
             this.isMailDeleted = true
         },

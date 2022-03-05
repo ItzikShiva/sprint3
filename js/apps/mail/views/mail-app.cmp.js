@@ -3,7 +3,10 @@ import mailList from '../cmps/mail-list.cmp.js'
 import mailStatus from '../cmps/mail-status.cmp.js';
 import mailFilter from '../cmps/mail-filter.cmp.js';
 import mailMenu from '../cmps/mail-menu.cmp.js';
+import mailCompose from '../cmps/mail-compose.cmp.js';
 
+// Vue.prototype.$UP = 'My App'
+// const UP = '🔼'
 
 export default {
     template: `
@@ -13,8 +16,9 @@ export default {
             <mail-filter @filtered="setFilter" @radioFilter="setFilter"></mail-filter>
             <mail-status :allMails="allMails"></mail-status>
             <div class="mail-menu-list">
-                <mail-menu :allMails="allMails" @menuWasClicked="setMenu"></mail-menu>
-                <mail-list :mailstoDisplay="mailsForDisplay" :allMails="allMails" @mailDeleted="onDeleteMail" @sorted="setSort"/>
+                <mail-menu :allMails="mailsForMenu" @menuWasClicked="setMenu"></mail-menu>
+                <mail-compose @mailPosted="onMailPosted" v-if="this.isComposeMail"></mail-compose>
+                <mail-list v-if="!this.isComposeMail" :mailstoDisplay="mailsForDisplay" :allMails="allMails" @mailDeleted="onDeleteMail" @sorted="setSort"/>
             </div>
            <!-- <router-link to="/car/edit">Add a new car</router-link> -->
         </section>
@@ -23,13 +27,14 @@ export default {
         mailList,
         mailStatus,
         mailFilter,
-        mailMenu
+        mailMenu,
+        mailCompose
 
     },
     data() {
         return {
+            isComposeMail: false,
             allMails: null,
-            // mailstoDisplay: null,
             filterByWords: null,
             filterByRadio: null,
             currMenuButton: null,
@@ -43,17 +48,27 @@ export default {
         this.getUpdateAllMails()
     },
     methods: {
-        onDeleteMail(mailId) {
-            mailService.remove(mailId)
-                .then(mail => {
+        onMailPosted(newComposeMail) {
+            // console.log(newComposeMail);
+            mailService.postNewMail(newComposeMail)
+                .then((mail) => {
                     this.getUpdateAllMails()
+                    this.isComposeMail = false
                 })
         },
+
+        onDeleteMail(mailId, mailRemovedAt) {
+            console.log(this.allMails);
+            this.getUpdateAllMails()
+        },
         setMenu(currMenuButton) {
-            console.log('yes', currMenuButton);
+            console.log('menu was clicked:', currMenuButton);
             this.currMenuButton = currMenuButton
 
-            // this.mailsForDisplay()
+            this.getUpdateAllMails()
+
+            if (this.currMenuButton === 'newMail') this.isComposeMail = true
+            else this.isComposeMail = false
         },
         setSort(sortBy) {
             // console.log(sortBy);
@@ -64,23 +79,54 @@ export default {
             this.filterByRadio = filterBy.radio;
         },
         getUpdateAllMails() {
-            mailService.query()
+            return mailService.query()
                 .then(mails => {
                     if (mails.length) this.allMails = mails
                     else {
                         this.allMails = mailService.getMailsHardCoded()
+
                         mailService.saveMailsToStorage(this.allMails)
                     }
                 });
         },
+        sortMails(mailsForDisplay) {
 
+            if (this.sortBy.whoIsCurrChange === 'name') {
+                if (this.sortBy.name) {
+                    mailsForDisplay.sort((firstMail, secondMail) => ((firstMail.from).localeCompare(secondMail.from)))
+                } else {
+                    mailsForDisplay.sort((firstMail, secondMail) => ((secondMail.from).localeCompare(firstMail.from)))
+                }
+            }
+            if (this.sortBy.whoIsCurrChange === 'date') {
+                if (this.sortBy.date) {
+                    mailsForDisplay.sort((firstMail, secondMail) => (secondMail.sentAt - firstMail.sentAt))
+                } else {
+                    mailsForDisplay.sort((firstMail, secondMail) => (firstMail.sentAt - secondMail.sentAt))
+                }
+            }
+            if (this.sortBy.whoIsCurrChange === 'star') {
+                if (this.sortBy.star) {
+                    console.log(mailsForDisplay);
+                    mailsForDisplay.sort((firstMail, secondMail) => (Number(firstMail.isStar) - Number(secondMail.isStar)))
+                } else {
+                    mailsForDisplay.sort((firstMail, secondMail) => (Number(secondMail.isStar) - Number(firstMail.isStar)))
+                }
+            }
+            return mailsForDisplay
+        },
     },
     computed: {
+        mailsForMenu() {
+            return this.allMails
+        },
         mailsForDisplay() {
-            console.log('checking mailsForDisplay()');
+            // console.log('get into mailsForDisplay() func');
+            var mailsForDisplay = this.allMails
+                // if (this.allMails && !this.currMenuButton === 'trashed')
+                //     mailsForDisplay = mailsForDisplay.filter(mail => (!mail.removeAt));
 
-            var mailsForDisplay = this.allMails;
-
+            // **************search***********
             if (this.filterByWords) {
                 const regex = new RegExp(this.filterByWords, 'i');
                 mailsForDisplay = this.allMails.filter(mail => (
@@ -88,26 +134,30 @@ export default {
                 ));
             }
 
+            // *************RADIO-FILTERS***********
             if (this.filterByRadio === 'Read') {
                 mailsForDisplay = mailsForDisplay.filter(mail => (mail.isRead));
             } else if (this.filterByRadio === 'unRead') {
                 mailsForDisplay = mailsForDisplay.filter(mail => (!mail.isRead));
             }
 
+            // ****************MENU-BUTTONS***********
             if (this.currMenuButton === 'starred') {
-                mailsForDisplay = mailsForDisplay.filter(mail => (mail.isStar));
+                mailsForDisplay = mailsForDisplay.filter(mail => (mail.isStar && !mail.removeAt));
+            } else if (this.currMenuButton === 'inbox') {
+                mailsForDisplay = mailsForDisplay.filter(mail => (!mail.removeAt));
+            } else if (this.currMenuButton === 'trashed') {
+                mailsForDisplay = mailsForDisplay.filter(mail => (mail.removeAt));
+                console.log('trashed!', mailsForDisplay);
+            }
+            if (this.currMenuButton === 'allMails') {
+                mailsForDisplay = this.allMails
             }
 
-            if (mailsForDisplay) {
-                if (!this.sortBy.name) {
-                    //something wrong here, its come to this component, but not to here!
-                    console.log('check');
-                    mailsForDisplay.sort((firstMail, secondMail) => (firstMail - secondMail))
-                }
-            }
 
+            // *************SORT-BY**********
+            if (mailsForDisplay) mailsForDisplay = this.sortMails(mailsForDisplay)
 
-            // this.mailstoDisplay = mailsForDisplay
             return mailsForDisplay
         },
     }
@@ -120,4 +170,6 @@ export default {
 //     isRead: false,
 //     sentAt: 1551133930594,
 //     to: 'momo@momo.com'
+// isView: false,
+// isStar: false
 //

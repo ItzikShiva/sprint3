@@ -1,24 +1,26 @@
 export default {
     template: `
         <section class="mail-filter">
-            <label>
-            Filter By </label>
-            <span class="mail-serch"> <b>Search (subject and body): </b>
-            <input @input="setFilter" type="text" v-model="filterBy.words" placeholder="Search..."> </span>
+            <!-- <label> Filter Menu: </label> -->
+            <div class="search-container">
+                <span> <b>Search (subject and body): </b>
+                <input @input="setFilter" type="text" v-model="filterBy.words" placeholder="Search..."> </span>
+            </div>
             
             <!-- ++++++++++++++++filter by READ \UNREAD+++++++++++++++ -->
+            <div class="filter-container">
+                <input type="radio" id="one" value="All" v-model="picked" @click="radioFilter">
+                <label for="one">All</label>
+                
+                <input type="radio" id="two" value="Read" v-model="picked" @click="radioFilter">
+                <label for="two">Read</label>
+                
+                <input type="radio" id="three" value="unRead" v-model="picked" @click="radioFilter">
+                <label for="three">unRead</label>
+                <br>
+                <span>Show: <b>{{ picked }}</b></span>
+            </div>
 
-
-            <input type="radio" id="one" value="All" v-model="picked" @click="radioFilter">
-            <label for="one">All</label>
-
-            <input type="radio" id="two" value="Read" v-model="picked" @click="radioFilter">
-            <label for="two">Read</label>
-
-            <input type="radio" id="three" value="unRead" v-model="picked" @click="radioFilter">
-            <label for="three">unRead</label>
-            <br>
-            <span>Show: {{ picked }}</span>
         </section>
     `,
     data() {

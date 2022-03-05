@@ -1,0 +1,122 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.book-preview {
+    display: flex ;
+    flex-direction: column;
+    width: 150px;
+}
+
+.book-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.book-preview-container {
+    font-family: 'Inter', sans-serif;
+
+    padding: 10px;
+    margin: 10px;
+    /* width: 150px; */
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.app-footer {
+    height: 200px;
+    background-color: green;
+    
+}
+
+.app-header {
+    height: 100px;
+    background-color: rgb(156, 38, 38);
+}
+
+.car-details{
+    background-color: lightcoral;
+    padding: 20px;
+    
+}
+
+.green{
+    color:green
+}
+
+.red {
+    color: red
+}
+
+.readMore {
+    color: blue;
+    text-decoration: underline;
+    text-decoration-color: blue;
+    cursor: pointer;
+}
+
+li button  {
+    margin-top: auto;
+    border: none;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition-duration: 0.4s;
+    font-family: 'Inter', sans-serif;
+
+}
+
+li button:hover {
+    background-color: #4c56af;
+    color: white;
+}
+
+.previewImg {
+    transition: transform .2s
+}
+
+.previewImg:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.book-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+
+}
+
+
+.search {
+    display: flex;
+    width: 200px;
+    height: 40px;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.app-main{
+    height: auto;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Karla&family=Montserrat:wght@100;400&family=Roboto:wght@300;700&display=swap')
