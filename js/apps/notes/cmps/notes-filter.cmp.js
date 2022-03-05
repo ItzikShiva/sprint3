@@ -1,25 +1,27 @@
 export default {
     template: `
         <section class="notes-filter">
-            <label>
-            Search
-            <input ref="notesInput" @input="setFilter" type="text" v-model="filterBy.txt" placeholder="Search...">
-            </label>
+            
+            <div class="search-section">
+                <input class="global-search" ref="notesInput" @input="setFilter" type="text" v-model="filterBy.txt" placeholder="Search...">
+            </div>
+            
 
-            <!-- <input type="radio"  value="note-txt" v-model="filterBy.type" @click="setFilterByType">
-            <label for="one">All</label> -->
-
-            <input type="radio"  value="note-txt" v-model="filterBy.type" @change="setFilterByType">
-            <label for="one">Text</label>
-
-            <input type="radio"  value="note-img" v-model="filterBy.type" @change="setFilterByType">
-            <label for="two">Image</label>
-
-            <input type="radio"  value="note-todos" v-model="filterBy.type" @change="setFilterByType">
-            <label for="three">Todo List</label>
-
-            <input type="radio"  value="note-video" v-model="filterBy.type" @change="setFilterByType">
-            <label for="three">Video</label>
+            <input type="radio"  value="note-txt" v-model="filterBy" @click="setFilter">
+            <label for="one">All</label>
+            <div class="radio-section">
+                <input type="radio"  value="note-txt" v-model="filterBy.type" @change="setFilterByType">
+                <label for="one">Text</label>
+    
+                <input type="radio"  value="note-img" v-model="filterBy.type" @change="setFilterByType">
+                <label for="two">Image</label>
+    
+                <input type="radio"  value="note-todos" v-model="filterBy.type" @change="setFilterByType">
+                <label for="three">Todo List</label>
+    
+                <input type="radio"  value="note-video" v-model="filterBy.type" @change="setFilterByType">
+                <label for="three">Video</label>
+            </div>
         </section>
     `,
     data() {
@@ -41,6 +43,6 @@ export default {
         setFilterByType() {
             console.log(' this.filterby.type:', this.filterBy);
             this.$emit('filteredbytype', this.filterBy.type);
-        }
+        },
     }
 }

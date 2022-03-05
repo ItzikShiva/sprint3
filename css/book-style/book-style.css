@@ -35,16 +35,7 @@ body {
     text-align: center;
 }
 
-.app-footer {
-    height: 200px;
-    background-color: green;
-    
-}
 
-.app-header {
-    height: 100px;
-    background-color: rgb(156, 38, 38);
-}
 
 .car-details{
     background-color: lightcoral;
