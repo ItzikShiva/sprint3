@@ -127,11 +127,11 @@ export default {
 
                 const regex = new RegExp(this.filterByText, 'i');
 
-                return this.notes.filter(note => regex.test(note.info.txt) || regex.test(note.info.title) || regex.test(note.info.label))
+
+                return this.notes.filter(note => regex.test(note.info.txt) || regex.test(note.info.title) || regex.test(note.info.label) ||
+                    (note.info.todos ? note.info.todos.some(todo => regex.test(todo.txt)) : false)
+                )
             }
-            // regex.test(
-            //     note.info.todos ? note.info.todos.map((note) => note.txt)) : note.info.title
-            //     );
 
             if (this.filterbyType) {
                 return this.notes.filter(note => note.type === this.filterbyType)

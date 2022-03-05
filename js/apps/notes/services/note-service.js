@@ -56,8 +56,8 @@ function pinToUp(id) {
 function duplicateNotes(id) {
     return storageService.get(NOTE_KEY, id)
         .then(note => {
-            note.id = utilService.makeId(4)
-                // console.log('check', note.id);
+            // note.id = utilService.makeId(4)
+            // console.log('check', note.id);
             return note
         })
 
@@ -99,7 +99,6 @@ function createNotes() {
                 type: "note-todos",
                 isPinned: false,
                 info: {
-
                     label: "Get my stuff together",
                     todos: [
                         { id: 1, txt: "Driving liscence", doneAt: null },

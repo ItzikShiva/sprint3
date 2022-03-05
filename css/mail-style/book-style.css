@@ -31,7 +31,7 @@ on mail hover -  #dadce0 */
 
 .mail-filter {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -42,6 +42,15 @@ on mail hover -  #dadce0 */
 .mail-filter .filter-container {
     padding-right: 60px;
     text-align: center;
+}
+
+.mail-search {
+    border: none;
+    background: #F1F3F4;
+    /* height: 100%; */
+    max-width: 300px;
+    font-size: 1rem;
+    margin-left: 10px;
 }
 
 .mail-status {

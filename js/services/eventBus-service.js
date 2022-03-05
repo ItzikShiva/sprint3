@@ -23,6 +23,11 @@ export function showSuccessMsg(txt) {
 }
 
 
+export function sendMail(note) {
+    eventBus.emit('onSendNoteToMail', { note });
+}
+
+
 
 
 eventBus.on('mailDeleted', (data) => {

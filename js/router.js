@@ -4,6 +4,7 @@ import mailApp from './apps/mail/views/mail-app.cmp.js'
 import notesApp from './apps/notes/views/note-app.cmp.js'
 import bookApp from './apps/MissBooks/js/views/book-app.cmp.js'
 import bookDetails from './apps/MissBooks/js/views/book-details.cmp.js'
+import mailCompose from './apps/mail/cmps/mail-compose.cmp.js'
 // import bookApp from './views/book-app.cmp.js';
 // import aboutPage from './views/about-page.cmp.js'
 // import bookDetails from './views/book-details.cmp.js';
@@ -21,6 +22,14 @@ const routes = [{
     {
         path: '/appsus/mail',
         component: mailApp
+    },
+    {
+        path: '/appsus/mail/:noteId',
+        component: mailApp
+    },
+    {
+        path: '/appsus/mail/compose',
+        component: mailCompose
     },
     {
         path: '/appsus/book',

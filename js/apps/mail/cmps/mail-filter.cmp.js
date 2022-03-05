@@ -4,7 +4,7 @@ export default {
             <!-- <label> Filter Menu: </label> -->
             <div class="search-container">
                 <span> <b>Search (subject and body): </b>
-                <input @input="setFilter" type="text" v-model="filterBy.words" placeholder="Search..."> </span>
+                <input class="mail-search" @input="setFilter" type="text" v-model="filterBy.words" placeholder="Search..."> </span>
             </div>
             
             <!-- ++++++++++++++++filter by READ \UNREAD+++++++++++++++ -->

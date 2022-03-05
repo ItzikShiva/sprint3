@@ -1,9 +1,13 @@
 import { mailService } from '../services/mail-service.js';
+import { noteService } from '../../notes/services/note-service.js';
+import { eventBus } from '../../../services/eventBus-service.js';
 import mailList from '../cmps/mail-list.cmp.js'
 import mailStatus from '../cmps/mail-status.cmp.js';
 import mailFilter from '../cmps/mail-filter.cmp.js';
 import mailMenu from '../cmps/mail-menu.cmp.js';
 import mailCompose from '../cmps/mail-compose.cmp.js';
+import notePreview from '../../notes/cmps/note-preview.cmp.js';
+
 
 // Vue.prototype.$UP = 'My App'
 // const UP = '🔼'
@@ -15,6 +19,7 @@ export default {
 
             <mail-filter @filtered="setFilter" @radioFilter="setFilter"></mail-filter>
             <mail-status :allMails="allMails"></mail-status>
+            {{checkIfMailRecieved}}
             <div class="mail-menu-list">
                 <mail-menu :allMails="mailsForMenu" @menuWasClicked="setMenu"></mail-menu>
                 <mail-compose @mailPosted="onMailPosted" v-if="this.isComposeMail"></mail-compose>
@@ -28,7 +33,8 @@ export default {
         mailStatus,
         mailFilter,
         mailMenu,
-        mailCompose
+        mailCompose,
+        notePreview
 
     },
     data() {
@@ -41,13 +47,21 @@ export default {
             sortBy: {
                 name: false,
                 date: true
-            }
+            },
         };
     },
     created() {
         this.getUpdateAllMails()
+        this.checkIfNoteRecieved()
+
     },
     methods: {
+        checkIfNoteRecieved() {
+            if (!this.$route.params.noteId) return
+            var noteId = this.$route.params.noteId
+                // if (!noteId) return
+            this.isComposeMail = true;
+        },
         onMailPosted(newComposeMail) {
             // console.log(newComposeMail);
             mailService.postNewMail(newComposeMail)
@@ -117,6 +131,7 @@ export default {
         },
     },
     computed: {
+
         mailsForMenu() {
             return this.allMails
         },

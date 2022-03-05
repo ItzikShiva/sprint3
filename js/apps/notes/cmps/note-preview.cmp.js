@@ -3,6 +3,8 @@ import noteImg from "./note-img.cmp.js";
 import noteTodos from "./note-todos.cmp.js";
 import noteVideo from "./note-video.cmp.js";
 import { noteService } from "../services/note-service.js";
+import { eventBus } from '../services/eventBus-service.js'
+import { sendMail } from "../../../services/eventBus-service.js";
 
 export default {
     props: ['note'],
@@ -38,6 +40,13 @@ export default {
                     <div class="material-icons-outlined hover">
                         <span @click="duplicateNote"><img class="img-input" src="/img/duplicate.png" alt=""></span>
                     </div>
+                    <!-- ITZIK ADD: -->
+                    <router-link :to="'/appsus/mail/'+note.id">
+                        <div class="material-icons-outlined hover">
+                            <span @click="sendingMail">send mail<img class="img-input" src="" alt=""></span>
+                        </div>
+                    </router-link>  
+                    <!-- / ITZIK ADD: -->
                 </div>
         <!-- </Transition> -->
 
@@ -65,7 +74,16 @@ export default {
         this.currType = this.note.type
     },
     methods: {
+        sendingMail() {
+            // eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'success' })
+            // eventBus.on('onSendNoteToMail', this.note);
 
+            // this.$emit('onSendNoteToMail', this.note)
+            // sendMail(this.note)
+            // this.$router.push('/appsus/mail')
+
+            // console.log(this.note);
+        },
         changeBgc() {
             if (!this.note) return
             console.log(this.backcolorFirst);
