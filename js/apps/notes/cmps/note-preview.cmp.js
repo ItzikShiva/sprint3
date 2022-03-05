@@ -61,28 +61,32 @@ export default {
         }
     },
     created() {
+        if (!this.note) return
         this.currType = this.note.type
     },
     methods: {
-          
+
         changeBgc() {
+            if (!this.note) return
             console.log(this.backcolorFirst);
             this.note.style.backgroundColor = this.backcolorFirst
-            // this.$emit('onRemove', this.note.id)
+                // this.$emit('onRemove', this.note.id)
             noteService.updateNote(this.note)
 
         },
         remove() {
+            if (!this.note) return
             this.$emit('onRemove', this.note.id)
-            
         },
-        
-        pinNote() {
+
+        pinNote(id) {
+            if (!this.note) return
             console.log('trying to pin', id);
             this.$emit('onPin', this.note.id)
         },
 
         duplicateNote() {
+            if (!this.note) return
             console.log('prwview-check');
             this.$emit('onDuplicate', this.note.id)
 

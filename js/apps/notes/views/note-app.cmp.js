@@ -21,7 +21,6 @@ export default {
         noteCreate,
         notesFilter,
         userMsg
-
     },
     data() {
         return {
@@ -31,22 +30,20 @@ export default {
             filterbyType: null,
             pinnedNotes: [],
             duplicateNote: []
-
         };
     },
     created() {
         this.getUpdateAllNotes()
     },
     methods: {
-
         onDuplicateNote(id) {
-            console.log(id);
             noteService.duplicateNotes(id)
-            .then(note => {
-
-                this.notes.push(note)
-                // noteService.saveNoteToStorage(note)
-            })
+                .then(note => {
+                    noteService.saveNoteToStorage(note)
+                        .then(note =>
+                            this.notes.push(note)
+                        )
+                })
         },
         getUpdateAllNotes() {
             noteService.query()
@@ -60,54 +57,44 @@ export default {
         },
         createNote(note) {
             console.log('note:', note);
-
             this.currType = note.type
-            noteService.addNote({ ...note })
+            noteService.addNote({...note })
                 .then(note => {
                     this.notes.push(note)
                     console.log('created');
                     eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'el-success' })
                 })
         },
-
         onPinToTop(id) {
             const selectedNote = this.notes.find((note) => note.id === id) || this.pinnedNotes.find((note) => note.id === id)
-
             if (selectedNote.isPinned) {
                 selectedNote.isPinned = false
                 this.onRemoveNote(id, this.pinnedNotes)
                 this.onAddToNotes(selectedNote)
                 return
-            }
-
-            else {
+            } else {
                 selectedNote.isPinned = true
                 this.onRemoveNote(id, this.notes)
                 this.onAddNoteToPinnedNotes(selectedNote)
                 return
             }
         },
-
         onRemoveNote(id, notesArray) {
             const selectedNoteIdx = notesArray.findIndex((note) => note.id === id)
             notesArray.splice(selectedNoteIdx, 1)
             this.onUpdateLocalStorage()
         },
-
         onAddNoteToPinnedNotes(selectedNote) {
             this.pinnedNotes.unshift(selectedNote)
             this.onUpdateLocalStorage()
         },
-
         onUpdateLocalStorage() {
             utilService.saveToStorage('notes', this.notes);
             utilService.saveToStorage('pinnedNotes', this.pinnedNotes);
         },
-
         onAddToNotes(selectedNote) {
             this.notes.unshift(selectedNote)
         },
-
         removeNoteApp(id) {
             noteService.removeNote(id)
                 .then(note => {
@@ -118,25 +105,33 @@ export default {
             console.log('filterBy:', filterBy);
             this.filterByText = filterBy.txt
         },
-
         onSetFilterByType(filterBy) {
             console.log('filterBy:', filterBy);
             this.filterbyType = filterBy
-        }
+        },
+
+
 
     },
     computed: {
         notesForDisplay() {
             var notesForDisplay = null
+
             notesForDisplay = this.notes
 
             if (!this.filterByText && !this.filterbyType) return notesForDisplay;
 
             if (this.filterByText) {
+
                 console.log(this.filterByText);
+
                 const regex = new RegExp(this.filterByText, 'i');
-                return this.notes.filter(note => regex.test(note.info.txt) || regex.test(note.info.title) || regex.test(note.info.label) || regex.test(note.info.todos?.map((note) => note.txt)));
+
+                return this.notes.filter(note => regex.test(note.info.txt) || regex.test(note.info.title) || regex.test(note.info.label))
             }
+            // regex.test(
+            //     note.info.todos ? note.info.todos.map((note) => note.txt)) : note.info.title
+            //     );
 
             if (this.filterbyType) {
                 return this.notes.filter(note => note.type === this.filterbyType)

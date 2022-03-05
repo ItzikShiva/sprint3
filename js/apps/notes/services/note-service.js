@@ -18,15 +18,18 @@ export const noteService = {
 }
 
 function saveNoteToStorage(note) {
-    return utilService.saveToStorage(NOTE_KEY, note)
+    return storageService.post(NOTE_KEY, note)
+        // return utilService.saveToStorage(NOTE_KEY, note)
 }
 
 function updateNote(note) {
     return storageService.put(NOTE_KEY, note)
 }
+
 function query() {
     return storageService.query(NOTE_KEY)
 }
+
 function pinnedNotesQuery() {
     return storageService.query('pinnedNotes')
 
@@ -52,6 +55,11 @@ function pinToUp(id) {
 
 function duplicateNotes(id) {
     return storageService.get(NOTE_KEY, id)
+        .then(note => {
+            note.id = utilService.makeId(4)
+                // console.log('check', note.id);
+            return note
+        })
 
 }
 
@@ -63,8 +71,7 @@ function createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY);
     if (!notes || !notes.length) {
 
-        notes = [
-            {
+        notes = [{
                 id: "n101",
                 type: "note-txt",
                 isPinned: false,
