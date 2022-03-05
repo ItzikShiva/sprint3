@@ -6,25 +6,10 @@ body {
     margin: 0;
 }
 
-
-/* app-header , app-footer */
-
-
-/* =========================   MAIL    ======================= */
-
-
-/* Mail COLORS
-bg + side menu -  #b2d5ee
-side menu btn - no bg; on hover: #fafbfb;
- on-inside:#ebebeb(with bold text)
-
-mail list:
-on mail hover -  #dadce0 */
-
 .mail-app {
     padding-left: 20px;
     height: 90vh;
-    background-color: #b2d5ee;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
 }
@@ -34,6 +19,9 @@ on mail hover -  #dadce0 */
     flex-direction: row-reverse;
     justify-content: center;    
     align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
 
 .mail-filter .search-container {
@@ -50,7 +38,7 @@ on mail hover -  #dadce0 */
     justify-content:space-between;
     flex-direction: row;
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    border: 1px solid #e0e1e0;
+    border: 1px solid #ffffff;
     border-radius: 8px;
     height: auto;
     width: 350px;
@@ -61,8 +49,6 @@ on mail hover -  #dadce0 */
     display: flex;
 
 }
-
-
 
 .mail-search {
     background-color: #ffffff;
@@ -88,11 +74,28 @@ on mail hover -  #dadce0 */
     /* flex-direction: column; */
 }
 
+.form-mail {
+    text-align: inherit;
+    gap: 5px;
+
+}
+
+.form-mail input {
+    margin-bottom: 40px;
+}
+
+.form-mail button {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+}
+
 .mail-menu {
     /* position: absolute; */
-    min-width: 20%;
-    height: 500px;
-    background-color: #cacaca;
+    width: 20%;
+    height: 100%;
 }
 
 .mail-menu button {
@@ -103,6 +106,10 @@ on mail hover -  #dadce0 */
     border-radius: 0px 100px 100px 0px;
     cursor: pointer;
     box-sizing: border-box;
+    text-align: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(138, 138, 138);
 }
 
 .mail-menu button:hover {
@@ -112,10 +119,6 @@ on mail hover -  #dadce0 */
     transition: 0.5s;
 }
 
-
-/* .mail-menu .pushed {
-    background-color: #ec3131;
-} */
 
 .mail-list {
     list-style: none;
@@ -244,6 +247,37 @@ on mail hover -  #dadce0 */
 .mail-preview img {
     width: 30px;
 }
+
+.mail-compose {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 30px;
+
+}
+
+textarea {
+    width: 600px;
+    height: 300px;
+}
+
+.text-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.mail-compose h2 {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+
 
 
 /* .mail-preview {
