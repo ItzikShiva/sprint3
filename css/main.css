@@ -1,20 +1,19 @@
 
 /* MAIN PAGE */
-
-@import '/css/note-style/main-page.css';
-@import '/css/note-style/main-menu.css';
+@import './note-style/main-page.css';
+@import './note-style/main-menu.css';
 
 /* NOTES STYLE */
 
-@import '/css/note-style/main-notes.css';
-@import '/css/note-style/notes-css.css';
-@import '/css/note-style/el-user-message.css';
-@import '/css/note-style/main-page.css';
+@import './note-style/main-notes.css';
+@import './note-style/notes-css.css';
+@import './note-style/el-user-message.css';
+@import './note-style/main-page.css';
 
 /* MAIL STYLE */
 
-@import '/css/mail-style/mail-style.css';
+@import './mail-style/mail-style.css';
 
 /* BOOK-STYLE */
 
-@import '/css/book-style/book-style.css'
+@import './book-style/book-style.css'
