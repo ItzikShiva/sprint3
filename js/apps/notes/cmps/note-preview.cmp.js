@@ -9,7 +9,6 @@ export default {
     template: `
         <section @mouseover="hover = true" @mouseleave="hover = false" class="card" v-bind:style="{backgroundColor: note.style.backgroundColor}">
             <!-- <Transition> -->
-            
                 <div class="preview-renderd">
                     <component :is="note.type" :note="note"/>
                 </div>
@@ -32,7 +31,7 @@ export default {
                     </div>
 
                     <div class="material-icons-outlined hover">
-                        <span><img class="img-input" src="/img/pencil.png" alt=""></span>
+                        <span @click=""><img class="img-input" src="/img/pencil.png" alt=""></span>
                     </div>
 
                     <div class="material-icons-outlined hover">
@@ -63,8 +62,10 @@ export default {
     created() {
         if (!this.note) return
         this.currType = this.note.type
+
     },
     methods: {
+
 
         changeBgc() {
             if (!this.note) return
@@ -93,6 +94,9 @@ export default {
         }
     },
     computed: {
+
+
+
         isTypeImg() {
             return this.note.type === 'note-img'
         },
@@ -100,6 +104,7 @@ export default {
             return this.note.info.url
         },
         titleToRender() {
+            console.log('test title');
             if (this.note.info.txt) return this.note.info.txt
             if (this.note.info.title) return this.note.info.title
         },
@@ -115,37 +120,3 @@ export default {
     },
 
 }
-
-
-// id: "n101",
-//     title: "",
-//     type: "note-txt",
-//     isPinned: true,
-//     info: {
-//         txt: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est eius accusamus rem, asperiores omnis error at possimus cum optio aliquid."
-//     }
-// }, {
-//     id: "n102",
-//     type: "note-img",
-//     info: {
-//         url: "http://some-img/me",
-//         title: "Bobi and Me"
-//     },
-//     style: {
-//         backgroundColor: "#00d"
-//     }
-// }, {
-//     id: "n103",
-//     type: "note-todos",
-//     info: {
-//         label: "Get my stuff together",
-//         todos: [
-//             { txt: "Driving liscence", doneAt: null },
-//             { txt: "Coding power", doneAt: 187111111 },
-//             { txt: "Driving liscence", doneAt: null },
-//             { txt: "Coding power", doneAt: 187111111 },
-//             { txt: "Driving liscence", doneAt: null },
-//             { txt: "Coding power", doneAt: 187111111 }
-//         ]
-//     }
-// }

@@ -16,14 +16,19 @@ export default {
     `,
 
     methods: {
+
         focusField() {
+            console.log('hhfgfgh');
             this.note.info.txt;
+
+
         },
         blurField() {
             this.editField = '';
+            console.log('hhh');
         },
         showField() {
-            return (this.note.info.txt == '' || this.editField == note.info.txt)
+          return (this.note.info.txt == '' || this.editField == note.info.txt)
         }
     }
 }

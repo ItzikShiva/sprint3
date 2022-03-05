@@ -11,7 +11,7 @@ export default {
                 <div class="note-types">
 
                     <div class="material-icons-outlined hover">
-                        <span><img class="img-input" src="/img/writing.png" alt=""></span>
+                        <span @click="createNote"><img class="img-input" src="/img/add.png" alt=""></span>
                     </div>
 
                     <div class="material-icons-outlined hover">
@@ -29,7 +29,6 @@ export default {
                     <div class="material-icons-outlined hover">
                         <span @click="setNopteType('note-todos')"><img class="img-input" src="/img/list.png" alt=""></span>
                     </div>
-                    <button @click="createNote">Add</button>
                 </div>
             </div>
         </section>

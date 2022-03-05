@@ -77,8 +77,6 @@
     width: 100%;
     flex: 1 1 0px;
     margin-bottom: 30px;
-
-    
 }
 
 .card {
@@ -92,8 +90,6 @@
     min-height: 200px;
     border-radius: 5px;
     overflow: visible;
-    
-
 }
 
 .card button {
@@ -114,6 +110,32 @@
     color: black;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.notes-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.search-section {
+    background: #f1f3f4;
+    width: 692px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+
+}
+
+.global-search {
+    border: none;
+    background: #f1f3f4;
+    height: 100%;
+    width: 95%;
+    font-size: 1rem;
+    margin-left: 10px;
 }
 
 
