@@ -9,18 +9,22 @@ export default {
     // mails - are filterd. allMails - not filtered
     template: `
         <section class="mail-compose">
-            <h2>New Message</h2>
-        <form @submit.prevent="send">
-                From:(hard code)<input type="text" v-model="currMail.from" placeholder="enter full name">
-                To:<input type="text" v-model="currMail.to" placeholder="enter full name">
-                Subject:<input type="text" v-model="currMail.subject" placeholder="enter full name" >
-                Body:<textarea v-model="currMail.body" rows="5" cols="33" > 
-                </textarea>
-                <br>
-                {{isValid}}
-                <button>Send</button>
-            </form>
-        </section>
+            <div class="compose-mail-section">
+
+                <h2>New Message</h2>
+                <form @submit.prevent="send">
+                    <div class="inputs-compose-new-mail">
+                        <input type="text" v-model="currMail.from" placeholder="enter full name">
+                        To:<input type="text" v-model="currMail.to" placeholder="enter full name">
+                        Subject:<input type="text" v-model="currMail.subject" placeholder="enter full name" >
+                    </div>
+                    <textarea v-model="currMail.body" rows="5" cols="33" ></textarea>
+                    <br>
+                    {{isValid}}
+                    <button>Send</button>
+                </form>
+            </div>
+            </section>
     `,
     data() {
         return {
